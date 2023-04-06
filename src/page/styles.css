@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.imageName {
+    height: 30%;
+}
+
+.boxLogin {
+    width: 30%;
+    height: 40%;
+    border-radius: 10;
+    border: 1px solid #f0f0f0;
+    border-color: aliceblue;
+    font-feature-settings: "tnum", "tnum";
+    background: #fff;
+    border-radius: 6px;
+    box-sizing: border-box;
+    border-width: 2px;
+    margin-bottom: 170px;
+    color: #626262;
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    padding: 0;
+    position: relative;
+}
+
+.warrper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 2vw;
+    color: #1C6BA4;
+}
+
+.formLogin {
+    flex-direction: column;
+    width: '100%';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
