@@ -1,10 +1,13 @@
 
 import axios from 'axios';
+import { TOKEN_KEY } from '../constants/appconstants';
 
-
+export const getAccessToken = () => {
+  return localStorage.getItem(TOKEN_KEY);
+};
 
 const ApiClient = axios.create({
-  baseURL: process.env.URL_API,
+  baseURL: process.env.REACT_APP_URL_API,
   headers: {
     'Content-type': 'application/json',
   },
@@ -12,10 +15,10 @@ const ApiClient = axios.create({
 
 ApiClient.interceptors.request.use(
   async (config: any) => {
-    // const accessToken = await getToken();
-    // if (accessToken) {
-    //   config.headers["Authorization"] = `Bearer ${accessToken}`;
-    // }
+    const accessToken = getAccessToken();
+    if (accessToken) {
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
+    }
     return config;
   },
   (error) => {

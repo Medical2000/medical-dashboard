@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, Alert } from 'antd';
+import { IUserLogin } from '../../interface/auth';
+import { authProviders } from '../../Api/auth';
+import { showNotification } from '../../components/notification';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
-
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
-        console.log(process.env.PUBLIC_URL_API
-        )
+    const navigate = useNavigate();
+    const onFinish = (values: IUserLogin) => {
+        authProviders(values).then(() => {
+            navigate('/home')
+        }).catch((err) => {
+            showNotification('error', 'Error', err.message);
+        })
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -16,7 +22,7 @@ export const Login = () => {
 
     return (
         <div className='container'>
-            <img src={require("../asset/image/BigLogo.png")} className='imageName' />
+            <img src={require("../../asset/image/BigLogo.png")} className='imageName' />
             <div className='boxLogin'>
                 <div className='warrper'>
                     <h2 className='title'>Medical</h2>
@@ -32,7 +38,7 @@ export const Login = () => {
                     >
                         <Form.Item
                             label="Username"
-                            name="username"
+                            name="user_name"
                             className="formLogin"
                             style={{ flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                             rules={[{ required: true, message: 'Please input your username!' }]}

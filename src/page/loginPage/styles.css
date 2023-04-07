@@ -12,7 +12,7 @@
 
 .boxLogin {
     width: 30%;
-    height: 40%;
+    height: 43%;
     border-radius: 10;
     border: 1px solid #f0f0f0;
     border-color: aliceblue;
@@ -41,12 +41,16 @@
 .title {
     font-size: 2vw;
     color: #1C6BA4;
+    /* margin: 0px; */
+    /* margin-top: 10px; */
 }
 
 .formLogin {
     flex-direction: column;
     width: '100%';
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* margin-top: 30px; */
 }
