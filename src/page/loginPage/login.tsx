@@ -3,7 +3,7 @@ import './styles.css';
 import { Button, Checkbox, Form, Input, Alert } from 'antd';
 import { IUserLogin } from '../../interface/auth';
 import { authProviders } from '../../Api/auth';
-import { showNotification } from '../../components/notification';
+import { showNotification } from '../../components/notification/notification';
 import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
