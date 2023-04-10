@@ -1,25 +1,16 @@
 import React, { useState } from 'react';
 import './styles.css'
 import {
-  AppstoreOutlined,
-  CalendarOutlined,
   CaretDownOutlined,
   CreditCardOutlined,
   DashboardOutlined,
-  DesktopOutlined,
-  FileOutlined,
   LinkOutlined,
   LogoutOutlined,
-  MailOutlined,
   MedicineBoxOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  PieChartOutlined,
   SettingOutlined,
-  TeamOutlined,
-  UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Button, MenuProps, Avatar, Dropdown } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
@@ -27,7 +18,7 @@ import { removeToken } from '../../constants/appconstants';
 import { Link, useNavigate } from 'react-router-dom';
 import MainContainer from '../MainConten/MainConen';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 

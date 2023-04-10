@@ -1,16 +1,26 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IWorkplace } from "../../interface/workplace";
-import { createWorkplace, deleteWorkplace, getAllWorkplaces } from "../action/workplace";
+import { UpdateWorkplace, createWorkplace, deleteWorkplace, getAllWorkplaces, getOneWorkplace } from "../action/workplace";
 
 interface WorkplaceState {
-    workplace: IWorkplace[],
+    workplaces: IWorkplace[],
+    workplace: IWorkplace,
     loading: boolean,
     message: string,
     success: boolean | undefined,
 }
 
 const initialState: WorkplaceState = {
-    workplace: [],
+    workplaces: [],
+    workplace: {
+        id: "",
+        name: "",
+        phone: "",
+        email: "",
+        address: "",
+        city: "",
+        type: "",
+    },
     loading: false,
     message: '',
     success: undefined,
@@ -30,11 +40,16 @@ const WorkplaceSlice = createSlice({
         });
         builder.addCase(getAllWorkplaces.fulfilled, (state, action) => {
             state.loading = false;
-            state.workplace = action.payload.data;
+            state.workplaces = action.payload.data;
         });
         builder.addCase(getAllWorkplaces.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false;
             state.message = action.payload;
+        });
+
+        builder.addCase(getOneWorkplace.fulfilled, (state, action) => {
+            state.loading = false;
+            state.workplace = action.payload.data;
         });
 
         builder.addCase(createWorkplace.pending, (state) => {
@@ -43,9 +58,34 @@ const WorkplaceSlice = createSlice({
         builder.addCase(createWorkplace.fulfilled, (state, action) => {
             state.loading = false;
             state.success = true;
-            state.workplace.push(action.payload.data);
+            state.message = action.payload.message;
+            state.workplaces.push(action.payload.data);
         });
         builder.addCase(createWorkplace.rejected, (state, action: PayloadAction<any>) => {
+            state.loading = false;
+            state.success = false;
+            state.message = action.payload;
+        });
+
+        builder.addCase(UpdateWorkplace.pending, (state) => {
+            state.loading = true;
+        });
+        builder.addCase(UpdateWorkplace.fulfilled, (state, action) => {
+            state.loading = false;
+            state.success = true;
+            state.message = action.payload.message;
+            state.workplaces = state.workplaces.map((e) => {
+                if (e.id === action.payload.data.id) {
+                    e.name = action.payload.data.name;
+                    e.phone = action.payload.data.phone;
+                    e.email = action.payload.data.email;
+                    e.city = action.payload.data.city;
+                    e.type = action.payload.data.type;
+                }
+                return e;
+            })
+        });
+        builder.addCase(UpdateWorkplace.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false;
             state.success = false;
             state.message = action.payload;
@@ -58,7 +98,7 @@ const WorkplaceSlice = createSlice({
             state.loading = false;
             state.success = true;
             state.message = action.payload.message;
-            state.workplace = state.workplace.filter((e) => e.id !== action.payload.id)
+            state.workplaces = state.workplaces.filter((e) => e.id !== action.payload.id)
         });
         builder.addCase(deleteWorkplace.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false;

@@ -17,11 +17,45 @@ export const getAllWorkplaces = createAsyncThunk(
     }
 );
 
+export const getOneWorkplace = createAsyncThunk(
+    "workplace/getone",
+    async (id: string, thunkApi) => {
+        try {
+            const response = await ApiClient.get(`${WORKPLACE_API.GET_ONE}${id}`);
+            return response.data
+        } catch (error: any) {
+            console.log(error)
+            return thunkApi.rejectWithValue(error.message)
+        }
+    }
+);
+
 export const createWorkplace = createAsyncThunk(
     "workplace/post",
     async (data: IWorkplace, thunkApi) => {
         try {
             const response = await ApiClient.post(WORKPLACE_API.CREATE, {
+                name: data.name,
+                phone: data.phone,
+                email: data.email,
+                address: data.address,
+                city: data.city,
+                type: data.type,
+            });
+            return response.data
+        } catch (error: any) {
+            console.log(error)
+            return thunkApi.rejectWithValue(error.message)
+        }
+    }
+);
+
+
+export const UpdateWorkplace = createAsyncThunk(
+    "workplace/patch",
+    async (data: IWorkplace, thunkApi) => {
+        try {
+            const response = await ApiClient.patch(`${WORKPLACE_API.UPDATE}${data.id}`, {
                 name: data.name,
                 phone: data.phone,
                 email: data.email,

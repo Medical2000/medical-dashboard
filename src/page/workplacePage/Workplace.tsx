@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/store'
-import { deleteWorkplace, getAllWorkplaces } from '../../redux/action/workplace';
-import { Space, Table, Input, Button } from 'antd';
+import { UpdateWorkplace, createWorkplace, deleteWorkplace, getAllWorkplaces, getOneWorkplace } from '../../redux/action/workplace';
+import { Space, Table, Input, Button, Form } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { IWorkplace } from '../../interface/workplace';
 import { DeleteFilled } from '@ant-design/icons';
@@ -10,13 +10,17 @@ import { showNotification } from '../../components/notification/notification';
 import { resetError } from '../../redux/reducer/workplace';
 import './styles.css'
 import Create from './Create';
+import { CustomModal } from '../../components/modal/CustomModal';
+import Update from './Update';
 
 
 const Workplace = () => {
     const { Search } = Input;
     const dispatch = useAppDispatch();
     const workplaceSelect = useAppSelector((state) => state.workplace);
-    const [open, setOpen] = useState(false);
+    const [form] = Form.useForm();
+    const [isModalVisibleCreate, setIsModalVisibleCreate] = useState(false);
+    const [isModalVisibleUpdate, setIsModalVisibleUpdate] = useState(false);
     const columns: ColumnsType<IWorkplace> = [
         {
             title: 'Nbr.',
@@ -25,8 +29,10 @@ const Workplace = () => {
         },
         {
             title: 'Name',
-            render: (text) => <a>{text}</a>,
-            dataIndex: 'name'
+            key: 'id',
+            render: (record) => (
+                <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}>{record.name}</a>
+            ),
         },
         {
             title: 'Phone',
@@ -77,17 +83,61 @@ const Workplace = () => {
         }
         showDeleteConfirm({ name: 'workplace', handleClick: handleDeleteWorkplace })
     };
-    const showModal = () => {
-        setOpen(true);
+
+    const showModalCreate = () => {
+        setIsModalVisibleCreate(true);
     };
 
-    const hideModal = () => {
-        setOpen(false);
+    const showModalUpdate = (id: string) => {
+        dispatch(getOneWorkplace(id));
+
+        setIsModalVisibleUpdate(true);
+    };
+
+    const handleCreate = (values: IWorkplace) => {
+        dispatch(createWorkplace(values)).then((res) => {
+            if (res.payload.status === 200) {
+                form.resetFields();
+                setIsModalVisibleCreate(false);
+            };
+        });
+    };
+
+    const handleUpdate = (values: IWorkplace) => {
+        dispatch(UpdateWorkplace(values)).then((res) => {
+            if (res.payload.status === 200) {
+                // form.resetFields();
+                setIsModalVisibleUpdate(false);
+            };
+        });
     };
 
     return (
         <>
-            <Create open={open} hideModal={hideModal} />
+            <CustomModal
+                title='Create a new  workplace'
+                isModalVisible={isModalVisibleCreate}
+                setIsModalVisible={setIsModalVisibleCreate}
+                form={form}
+            >
+                <Create
+                    handleCreate={handleCreate}
+                    form={form}
+                />
+            </CustomModal>
+
+            <CustomModal
+                title='Update a workplace'
+                isModalVisible={isModalVisibleUpdate}
+                setIsModalVisible={setIsModalVisibleUpdate}
+            >
+                <Update
+                    handleUpdate={handleUpdate}
+                    data={workplaceSelect.workplace}
+                    form={form}
+                />
+            </CustomModal>
+
             <div className='headerList' >
                 <Search
                     placeholder="Enter search workplace..."
@@ -101,7 +151,7 @@ const Workplace = () => {
                     type="primary"
                     size='large'
                     style={{ backgroundColor: '#1C6BA4' }}
-                    onClick={showModal}
+                    onClick={showModalCreate}
                 >
                     Add workplace
                 </Button>
@@ -109,7 +159,7 @@ const Workplace = () => {
             <Table
                 loading={workplaceSelect.loading}
                 bordered columns={columns}
-                dataSource={workplaceSelect.workplace.map((item, index) => ({ ...item, nbr: index + 1, key: index }))} />
+                dataSource={workplaceSelect.workplaces.map((item, index) => ({ ...item, nbr: index + 1, key: index }))} />
         </>
     )
 }

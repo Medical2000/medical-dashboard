@@ -12,7 +12,7 @@ export const showNotification = (
     notification[type]({
         message,
         description,
-        duration: 2,
+        duration: 3,
         placement,
         style,
         className,

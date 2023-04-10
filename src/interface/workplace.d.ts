@@ -1,6 +1,6 @@
 
 export interface IWorkplace {
-    id: string,
+    id?: string,
     name: string,
     phone: string,
     email: string,
