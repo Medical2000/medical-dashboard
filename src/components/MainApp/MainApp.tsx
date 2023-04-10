@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css'
 import {
+  AuditOutlined,
   CaretDownOutlined,
   CreditCardOutlined,
   DashboardOutlined,
@@ -11,6 +12,7 @@ import {
   MenuUnfoldOutlined,
   SettingOutlined,
   UserOutlined,
+  UsergroupAddOutlined,
 } from '@ant-design/icons';
 import { Button, MenuProps, Avatar, Dropdown } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
@@ -65,19 +67,22 @@ const MainApp: React.FC = () => {
       getItem(
         <Link to="/home/degree"> Degree</Link>, '5'),
     ]),
-    getItem('Navigation Three', 'sub2', <SettingOutlined />, [
+    getItem(
+      <div className='label'>Patient management</div>, 'sub2', <AuditOutlined style={{ fontSize: 17 }} />, [
       getItem('Option 7', '7'),
       getItem('Option 8', '8'),
       getItem('Option 9', '9'),
       getItem('Option 10', '10'),
     ]),
     getItem(
-      <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-        Ant Design
-      </a>,
-      'link',
-      <LinkOutlined />,
-    ),
+      <div className='label'>Sytem Administration</div>, 'sub3', <SettingOutlined style={{ fontSize: 17 }} />, [
+      getItem(
+        <Link to="/home/user">User </Link>, '11',),
+      getItem(
+        <Link to="/home/user">Role </Link>, '12',),
+
+    ])
+
   ];
 
   const menuProps = {

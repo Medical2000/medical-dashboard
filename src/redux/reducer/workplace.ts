@@ -51,6 +51,10 @@ const WorkplaceSlice = createSlice({
             state.loading = false;
             state.workplace = action.payload.data;
         });
+        builder.addCase(getOneWorkplace.rejected, (state, action: PayloadAction<any>) => {
+            state.loading = false;
+            state.message = action.payload;
+        });
 
         builder.addCase(createWorkplace.pending, (state) => {
             state.loading = true;
@@ -80,6 +84,7 @@ const WorkplaceSlice = createSlice({
                     e.phone = action.payload.data.phone;
                     e.email = action.payload.data.email;
                     e.city = action.payload.data.city;
+                    e.address = action.payload.data.address;
                     e.type = action.payload.data.type;
                 }
                 return e;

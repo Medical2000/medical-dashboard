@@ -8,7 +8,8 @@ import {
 import { Doctor } from '../../page/doctorPage/doctor';
 import Home from '../../page/homePage/Home';
 import Workplace from '../../page/workplacePage/Workplace';
-import Degree from '../../page/DegreePage/Degree';
+import Degree from '../../page/degreePage/Degree';
+import User from '../../page/userPage/User';
 
 const MainContainer = () => {
     return (
@@ -18,6 +19,7 @@ const MainContainer = () => {
                 <Route path="home/doctor" element={<Doctor />} />
                 <Route path="home/workplace" element={<Workplace />} />
                 <Route path="home/degree" element={<Degree />} />
+                <Route path="home/user" element={<User/>} />
             </Routes>
         </div>
     )

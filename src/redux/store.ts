@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import workplace from './reducer/workplace';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import userSlice from './reducer/user';
 
 export const store = configureStore({
     reducer: {
-        workplace: workplace.reducer
+        workplace: workplace.reducer,
+        user: userSlice.reducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
