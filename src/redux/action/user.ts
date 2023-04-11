@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import ApiClient from '../../Api/axios';
 import { USER_API } from '../../Api/baseApi';
 import { IUser } from '../../interface/auth';
+import dayjs from 'dayjs';
 
 
 export const getAllUsers = createAsyncThunk(
@@ -33,20 +34,27 @@ export const getOneUser = createAsyncThunk(
 export const createUser = createAsyncThunk(
     "user/post",
     async (data: IUser, thunkApi) => {
+        console.log(data)
         try {
-            const response = await ApiClient.post(USER_API.CREATE, {
-                firstname: data.firstname,
-                lastname: data.lastname,
-                user_name: data.user_name,
-                password: data.password,
-                avatar: data.avatar,
-                email: data.email,
-                gender: data.gender,
-                phone: data.phone,
-                date_of_birth: data.date_of_birth,
-                address: data.address,
-                status: data.status,
-                roleId: data.roleId,
+            const formatDate = dayjs(data.date_of_birth).format('YYYY-MM-DD')
+            const formData = new FormData();
+            
+            formData.append('user_name', data.user_name);
+            formData.append('email', data.email);
+            formData.append('password', data.password);
+            formData.append('firstname', data.firstname);
+            formData.append('lastname', data.lastname);
+            formData.append('gender', data.gender);
+            formData.append('phone', data.phone);
+            formData.append('date_of_birth', formatDate);
+            formData.append('address', data.address);
+            formData.append('status', data.status);
+            formData.append('roleId', data.roleId);
+            // formData.append('avatar', data.avatar.file.originFileObj);
+            const response = await ApiClient.post(USER_API.CREATE, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
             return response.data
         } catch (error: any) {
@@ -66,7 +74,7 @@ export const UpdateUser = createAsyncThunk(
                 lastname: data.lastname,
                 user_name: data.user_name,
                 password: data.password,
-                avatar: data.avatar,
+                avatar_path: data.avatar_path,
                 email: data.email,
                 gender: data.gender,
                 phone: data.phone,

@@ -9,60 +9,29 @@ import './styles.css'
 import Create from './Create';
 import { CustomModal } from '../../components/modal/CustomModal';
 import Update from './Update';
-import { UpdateUser, createUser, deleteUser, getAllUsers, getOneUser } from '../../redux/action/user';
-import { IUser } from '../../interface/auth';
-import dayjs from 'dayjs';
-import { getAllRoles } from '../../redux/action/role';
-import { resetError } from '../../redux/reducer/user';
+import { IRole } from '../../interface/auth';
+import { UpdateRole, createRole, deleteRole, getAllRoles, getOneRole } from '../../redux/action/role';
+import { resetError } from '../../redux/reducer/role';
 
 
-const User = () => {
+const Role = () => {
     const { Search } = Input;
     const dispatch = useAppDispatch();
-    const userSelect = useAppSelector((state) => state.user);
-    const roleSelect  = useAppSelector((state)=> state.role);
+    const roleSelect = useAppSelector((state) => state.role);
     const [form] = Form.useForm();
     const [isModalVisibleCreate, setIsModalVisibleCreate] = useState(false);
     const [isModalVisibleUpdate, setIsModalVisibleUpdate] = useState(false);
-    const columns: ColumnsType<IUser> = [
+    const columns: ColumnsType<IRole> = [
         {
             title: 'Nbr.',
             dataIndex: 'nbr',
             rowScope: 'row',
         },
         {
-            title: 'User',
+            title: 'Role Name',
             key: 'id',
             render: (record) => (
-                <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}>{record.user_name}</a>
-            ),
-        },
-
-        {
-            title: 'Full Name',
-            render: (record) => (
-                <span >{record.firstname} {record.lastname}</span>
-            ),
-        },
-        {
-            title: 'Email',
-            dataIndex: 'email',
-        },
-        {
-            title: 'Phone',
-            dataIndex: 'phone',
-        },
-        {
-            title: 'Authorize',
-            render: (record) => (
-                <span >{record.role.role_name}</span>
-            ),
-        },
-
-        {
-            title: 'Status',
-            render: (record) => (
-                <a style={{ fontWeight: 600 }} >{record.status ? "Active" : "Inactive"}</a>
+                <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}>{record.role_name}</a>
             ),
         },
         {
@@ -75,25 +44,25 @@ const User = () => {
         },
     ];
     useEffect(() => {
-        dispatch(getAllUsers());
         dispatch(getAllRoles());
     }, [dispatch])
 
     useEffect(() => {
-        if (userSelect.success === false) {
-            showNotification('error', 'Error', userSelect.message);
+        console.log(roleSelect)
+        if (roleSelect.success === false) {
+            showNotification('error', 'Error', roleSelect.message);
             dispatch(resetError());
-        } else if (userSelect.success) {
-            showNotification('success', 'Success', userSelect.message);
+        } else if (roleSelect.success) {
+            showNotification('success', 'Success', roleSelect.message);
             dispatch(resetError());
         };
-    }, [userSelect.success, dispatch])
+    }, [roleSelect.success,dispatch]);
 
     const handleDelete = (id: string) => {
-        const handleDeleteUser = () => {
-            dispatch(deleteUser(id));
+        const handleDeleteRole = () => {
+            dispatch(deleteRole(id));
         }
-        showDeleteConfirm({ name: 'User', handleClick: handleDeleteUser })
+        showDeleteConfirm({ name: 'Role', handleClick: handleDeleteRole })
     };
 
     const showModalCreate = () => {
@@ -101,13 +70,13 @@ const User = () => {
     };
 
     const showModalUpdate = (id: string) => {
-        dispatch(getOneUser(id));
+        dispatch(getOneRole(id));
 
         setIsModalVisibleUpdate(true);
     };
 
-    const handleCreate = (values: IUser) => {
-        dispatch(createUser({...values})).then((res) => {
+    const handleCreate = (values: IRole) => {
+        dispatch(createRole(values)).then((res) => {
             if (res.payload.status === 200) {
                 form.resetFields();
                 setIsModalVisibleCreate(false);
@@ -115,8 +84,8 @@ const User = () => {
         });
     };
 
-    const handleUpdate = (values: IUser) => {
-        dispatch(UpdateUser(values)).then((res) => {
+    const handleUpdate = (values: IRole) => {
+        dispatch(UpdateRole(values)).then((res) => {
             if (res.payload.status === 200) {
                 // form.resetFields();
                 setIsModalVisibleUpdate(false);
@@ -127,35 +96,34 @@ const User = () => {
     return (
         <>
             <CustomModal
-                title='Create a new  User'
+                title='Create a new  Role'
                 isModalVisible={isModalVisibleCreate}
                 setIsModalVisible={setIsModalVisibleCreate}
-                width={1200}
                 form={form}
+                width={800}
             >
                 <Create
                     handleCreate={handleCreate}
-                    role={roleSelect.roles}
                     form={form}
                 />
             </CustomModal>
 
             <CustomModal
-                title='Update a User'
+                title='Update a Role'
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
+                width={800}
             >
                 <Update
                     handleUpdate={handleUpdate}
-                    role={roleSelect.roles}
-                    data={userSelect.user}
+                    data={roleSelect.role}
                     form={form}
                 />
             </CustomModal>
 
             <div className='headerList' >
                 <Search
-                    placeholder="Enter search user..."
+                    placeholder="Enter search Role..."
                     allowClear
                     size="large"
                     style={{ width: '70%' }}
@@ -168,15 +136,15 @@ const User = () => {
                     style={{ backgroundColor: '#1C6BA4' }}
                     onClick={showModalCreate}
                 >
-                    Add user
+                    Add Role
                 </Button>
             </div>
             <Table
-                loading={userSelect.loading}
+                loading={roleSelect.loading}
                 bordered columns={columns}
-                dataSource={userSelect.users.map((item, index) => ({ ...item, nbr: index + 1, key: index }))} />
+                dataSource={roleSelect.roles.map((item, index) => ({ ...item, nbr: index + 1, key: index }))} />
         </>
     )
 }
 
-export default User;
+export default Role;

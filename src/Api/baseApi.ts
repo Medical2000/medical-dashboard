@@ -14,7 +14,14 @@ export const USER_API = {
     CREATE: '/user/create',
     UPDATE: '/user/update',
     DELETE: '/user/delete',
-}
+};
 
+export const ROLE_API = {
+    GET_ALL: '/role/get-all',
+    GET_ONE: '/role/get-one',
+    CREATE: '/role/create',
+    UPDATE: '/role/update',
+    DELETE: '/role/delete',
+};
 
 

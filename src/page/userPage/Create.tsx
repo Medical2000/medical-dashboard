@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button, Col, DatePicker, Form, FormInstance, Input, Radio, Row, Select, Upload } from 'antd';
-import { IUser } from '../../interface/auth';
+import { IRole, IUser } from '../../interface/auth';
 import { PlusOutlined } from '@ant-design/icons';
 
 interface Iporps {
   form: FormInstance<any>;
   handleCreate: (values: IUser) => void;
+  role: IRole[]
 }
 
 const layout = {
@@ -13,7 +14,7 @@ const layout = {
 };
 
 
-const Create = ({ handleCreate, form }: Iporps) => {
+const Create = ({ handleCreate, form, role }: Iporps) => {
   const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -92,7 +93,7 @@ const Create = ({ handleCreate, form }: Iporps) => {
           </Form.Item>
         </Col>
         <Col span={12}>
-          <Form.Item name={'role'} label="Role">
+          <Form.Item name={'roleId'} label="Role">
             <Select
               showSearch
               placeholder="Select a role"
@@ -100,21 +101,10 @@ const Create = ({ handleCreate, form }: Iporps) => {
               filterOption={(input, option) =>
                 (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
               }
-              options={[
-                {
-                  value: "Female",
-                  label: "Female"
-                },
-                {
-                  value: "Male",
-                  label: "Male"
-                },
-                {
-                  value: "Other",
-                  label: "Other"
-                },
-
-              ]}
+              options={role.map((e) => ({
+                value: e.id,
+                label: e.role_name
+              }))}
             />
           </Form.Item>
         </Col>
@@ -133,7 +123,7 @@ const Create = ({ handleCreate, form }: Iporps) => {
 
         <Col span={12}>
           <Form.Item name={'status'} label="Status">
-            <Radio.Group defaultValue={true} >
+            <Radio.Group defaultValue={true}  >
               <Radio value={true}>Active</Radio>
               <Radio value={false}>Inactive</Radio>
             </Radio.Group>
@@ -153,23 +143,6 @@ const Create = ({ handleCreate, form }: Iporps) => {
 
       </Row>
 
-      {/* 
-      <Form.Item name={'phone'} label="Phone"  >
-        <Input />
-      </Form.Item>
-      <Form.Item name={'email'} label="Email" rules={[{ type: 'email' }]}>
-        <Input />
-      </Form.Item>
-
-      <Form.Item name={'city'} label="City" >
-        <Input />
-      </Form.Item>
-      <Form.Item name={'address'} label="Address" >
-        <Input.TextArea />
-      </Form.Item>
-      <Form.Item name={'type'} label="Type">
-        <Input />
-      </Form.Item> */}
       <Row justify={"end"} align={'bottom'} style={{ marginTop: 30 }} >
         <Button type="primary" htmlType="submit">
           Save

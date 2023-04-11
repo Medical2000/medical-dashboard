@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Button, Form, FormInstance, Input, Row } from 'antd';
-import { IRole, IUser } from '../../interface/auth';
+import { IWorkplace } from '../../interface/workplace';
+import { IRole } from '../../interface/auth';
 interface Iporps {
     form?: FormInstance<any>;
-    handleUpdate: (values: IUser) => void;
-    data: IUser;
-    role:IRole[]
+    handleUpdate: (values: IRole) => void;
+    data: IRole
 }
 
 const layout = {
@@ -19,13 +19,6 @@ const Update = ({ handleUpdate, data }: Iporps) => {
 
     const validateMessages = {
         required: '${label} is required!',
-        types: {
-            email: '${label} is not a valid email!',
-            number: '${label} is not a valid number!',
-        },
-        number: {
-            range: '${label} must be between ${min} and ${max}',
-        },
     };
 
     useEffect(() => {
@@ -42,22 +35,7 @@ const Update = ({ handleUpdate, data }: Iporps) => {
             style={{ marginTop: 20 }}
             validateMessages={validateMessages}
         >
-            <Form.Item name={'name'} label="Name" rules={[{ required: true }]}>
-                <Input />
-            </Form.Item>
-            <Form.Item name={'phone'} label="Phone"  >
-                <Input />
-            </Form.Item>
-            <Form.Item name={'email'} label="Email" rules={[{ type: 'email' }]}>
-                <Input />
-            </Form.Item>
-            <Form.Item name={'city'} label="City" >
-                <Input />
-            </Form.Item>
-            <Form.Item name={'address'} label="Address" >
-                <Input.TextArea />
-            </Form.Item>
-            <Form.Item name={'type'} label="Type">
+            <Form.Item name={'role_name'} label="Role Name" rules={[{ required: true }]}>
                 <Input />
             </Form.Item>
             <Row justify={"end"} align={'bottom'} style={{ marginTop: 30 }} >

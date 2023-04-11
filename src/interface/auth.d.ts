@@ -4,7 +4,7 @@ export type IUserLogin = {
 }
 
 export interface IRole {
-  id: string,
+  id?: string,
   role_name: string
 }
 export interface IUser {
@@ -13,8 +13,9 @@ export interface IUser {
   lastname: string,
   user_name: string,
   password: string,
-  avatar: string,
+  avatar_path: string,
   email: string,
+  avatar?:any,
   gender: string,
   phone: string,
   date_of_birth: string,
