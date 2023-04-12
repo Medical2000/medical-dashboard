@@ -8,19 +8,19 @@ export interface IRole {
   role_name: string
 }
 export interface IUser {
-  id?:string,
+  id?: string,
   firstname: string,
   lastname: string,
   user_name: string,
   password: string,
   avatar_path: string,
   email: string,
-  avatar?:any,
   gender: string,
   phone: string,
   date_of_birth: string,
+  formatDate?: string,
   address: string,
-  status: string,
+  status: boolean | string,
   roleId: string,
   role?: IRole,
 }

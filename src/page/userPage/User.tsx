@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/store'
-import {  Table, Input, Button, Form } from 'antd';
+import { Table, Input, Button, Form } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { DeleteFilled } from '@ant-design/icons';
 import { showDeleteConfirm } from '../../components/showDeleteConfirm/showDeleteConfirm';
@@ -20,7 +20,7 @@ const User = () => {
     const { Search } = Input;
     const dispatch = useAppDispatch();
     const userSelect = useAppSelector((state) => state.user);
-    const roleSelect  = useAppSelector((state)=> state.role);
+    const roleSelect = useAppSelector((state) => state.role);
     const [form] = Form.useForm();
     const [isModalVisibleCreate, setIsModalVisibleCreate] = useState(false);
     const [isModalVisibleUpdate, setIsModalVisibleUpdate] = useState(false);
@@ -107,7 +107,7 @@ const User = () => {
     };
 
     const handleCreate = (values: IUser) => {
-        dispatch(createUser({...values})).then((res) => {
+        dispatch(createUser({ ...values })).then((res) => {
             if (res.payload.status === 200) {
                 form.resetFields();
                 setIsModalVisibleCreate(false);
@@ -116,6 +116,7 @@ const User = () => {
     };
 
     const handleUpdate = (values: IUser) => {
+        console.log(values)
         dispatch(UpdateUser(values)).then((res) => {
             if (res.payload.status === 200) {
                 // form.resetFields();
@@ -144,12 +145,14 @@ const User = () => {
                 title='Update a User'
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
+                width={1200}
             >
                 <Update
                     handleUpdate={handleUpdate}
                     role={roleSelect.roles}
                     data={userSelect.user}
                     form={form}
+
                 />
             </CustomModal>
 

@@ -139,6 +139,7 @@ const Role = () => {
                     Add Role
                 </Button>
             </div>
+            
             <Table
                 loading={roleSelect.loading}
                 bordered columns={columns}

@@ -34,28 +34,21 @@ export const getOneUser = createAsyncThunk(
 export const createUser = createAsyncThunk(
     "user/post",
     async (data: IUser, thunkApi) => {
-        console.log(data)
         try {
-            const formatDate = dayjs(data.date_of_birth).format('YYYY-MM-DD')
-            const formData = new FormData();
-            
-            formData.append('user_name', data.user_name);
-            formData.append('email', data.email);
-            formData.append('password', data.password);
-            formData.append('firstname', data.firstname);
-            formData.append('lastname', data.lastname);
-            formData.append('gender', data.gender);
-            formData.append('phone', data.phone);
-            formData.append('date_of_birth', formatDate);
-            formData.append('address', data.address);
-            formData.append('status', data.status);
-            formData.append('roleId', data.roleId);
-            // formData.append('avatar', data.avatar.file.originFileObj);
-            const response = await ApiClient.post(USER_API.CREATE, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+            const response = await ApiClient.post(USER_API.CREATE, {
+                firstname: data.firstname,
+                lastname: data.lastname,
+                user_name: data.user_name,
+                password: data.password,
+                // avatar: data.avatar,
+                email: data.email,
+                gender: data.gender,
+                phone: data.phone,
+                date_of_birth: data.date_of_birth,
+                address: data.address,
+                status: data.status || true,
+                roleId: data.roleId
+            })
             return response.data
         } catch (error: any) {
             console.log(error)
@@ -69,16 +62,17 @@ export const UpdateUser = createAsyncThunk(
     "user/patch",
     async (data: IUser, thunkApi) => {
         try {
+            const formatDate = dayjs(data.formatDate).format('YYYY-MM-DD')
             const response = await ApiClient.patch(`${USER_API.UPDATE}${data.id}`, {
                 firstname: data.firstname,
                 lastname: data.lastname,
                 user_name: data.user_name,
                 password: data.password,
-                avatar_path: data.avatar_path,
+                // avatar_path: data.avatar_path,
                 email: data.email,
                 gender: data.gender,
                 phone: data.phone,
-                date_of_birth: data.date_of_birth,
+                date_of_birth: data.formatDate,
                 address: data.address,
                 status: data.status,
                 roleId: data.roleId,
