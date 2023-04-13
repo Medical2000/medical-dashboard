@@ -85,12 +85,17 @@ const userSlice = createSlice({
             state.message = action.payload.message;
             state.users = state.users.map((e) => {
                 if (e.id === action.payload.data.id) {
-                    // e.name = action.payload.data.name;
-                    // e.phone = action.payload.data.phone;
-                    // e.email = action.payload.data.email;
-                    // e.city = action.payload.data.city;
-                    // e.address = action.payload.data.address;
-                    // e.type = action.payload.data.type;
+                    e.user_name = action.payload.data.user_name;
+                    e.phone = action.payload.data.phone;
+                    e.email = action.payload.data.email;
+                    e.lastname = action.payload.data.lastname;
+                    e.firstname = action.payload.data.firstname;
+                    e.address = action.payload.data.address;
+                    e.gender = action.payload.data.gender;
+                    e.role = action.payload.data.role;
+                    e.status = action.payload.data.status;
+                    e.date_of_birth = action.payload.data.date_of_birth;
+                    e.avatar_path = action.payload.avatar_path;
                 }
                 return e;
             })

@@ -44,7 +44,7 @@ const Update = ({ handleUpdate, data, role }: Iporps) => {
             size='large'
             name="nest-messages"
             onFinish={(e) => handleUpdate({ ...e, id: data.id })}
-            style={{ marginTop: 20 }}
+            style={{ marginTop: 20, overflowX: 'hidden' }}
             validateMessages={validateMessages}
         >
             <Row gutter={[24, 8]}>

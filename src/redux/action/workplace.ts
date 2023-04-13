@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {  createAsyncThunk } from '@reduxjs/toolkit';
 import ApiClient from '../../Api/axios';
 import { WORKPLACE_API } from '../../Api/baseApi';
 import { IWorkplace } from '../../interface/workplace';

@@ -1,14 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import ApiClient from '../../Api/axios';
-import { ROLE_API } from '../../Api/baseApi';
-import { IRole } from '../../interface/auth';
+import { BLOOD_GROUPS_API } from '../../Api/baseApi';
+import { IBloodGroup } from '../../interface/patient';
 
 
-export const getAllRoles = createAsyncThunk(
-    "Role/get",
+export const getAllBloodGroups = createAsyncThunk(
+    "BloodGroup/get",
     async (data, thunkApi) => {
         try {
-            const response = await ApiClient.get(ROLE_API.GET_ALL);
+            const response = await ApiClient.get(BLOOD_GROUPS_API.GET_ALL);
             return response.data
         } catch (error: any) {
             console.log(error)
@@ -17,11 +17,11 @@ export const getAllRoles = createAsyncThunk(
     }
 );
 
-export const getOneRole = createAsyncThunk(
-    "Role/getone",
+export const getOneBloodGroup = createAsyncThunk(
+    "BloodGroup/getone",
     async (id: string, thunkApi) => {
         try {
-            const response = await ApiClient.get(`${ROLE_API.GET_ONE}${id}`);
+            const response = await ApiClient.get(`${BLOOD_GROUPS_API.GET_ONE}${id}`);
             return response.data
         } catch (error: any) {
             console.log(error)
@@ -30,12 +30,12 @@ export const getOneRole = createAsyncThunk(
     }
 );
 
-export const createRole = createAsyncThunk(
-    "Role/post",
-    async (data: IRole, thunkApi) => {
+export const createBloodGroup = createAsyncThunk(
+    "BloodGroup/post",
+    async (data: IBloodGroup, thunkApi) => {
         try {
-            const response = await ApiClient.post(ROLE_API.CREATE, {
-                role_name: data.role_name,
+            const response = await ApiClient.post(BLOOD_GROUPS_API.CREATE, {
+                blood_name: data.blood_name
 
             });
             return response.data
@@ -47,12 +47,12 @@ export const createRole = createAsyncThunk(
 );
 
 
-export const UpdateRole = createAsyncThunk(
-    "Role/patch",
-    async (data: IRole, thunkApi) => {
+export const UpdateBloodGroup = createAsyncThunk(
+    "BloodGroup/patch",
+    async (data: IBloodGroup, thunkApi) => {
         try {
-            const response = await ApiClient.patch(`${ROLE_API.UPDATE}${data.id}`, {
-                role_name: data.role_name,
+            const response = await ApiClient.patch(`${BLOOD_GROUPS_API.UPDATE}${data.id}`, {
+                blood_name: data.blood_name
             });
             return response.data
         } catch (error: any) {
@@ -62,11 +62,11 @@ export const UpdateRole = createAsyncThunk(
     }
 );
 
-export const deleteRole = createAsyncThunk(
-    "Role/delete",
+export const deleteBloodGroup = createAsyncThunk(
+    "BloodGroup/delete",
     async (id: string, thunkApi) => {
         try {
-            const response = await ApiClient.delete(`${ROLE_API.DELETE}${id}`);
+            const response = await ApiClient.delete(`${BLOOD_GROUPS_API.DELETE}${id}`);
             return response.data
         } catch (error: any) {
             console.log(error)

@@ -29,7 +29,7 @@ const Create = ({ handleCreate, form, role }: Iporps) => {
       size='large'
       name="nest-messages"
       onFinish={handleCreate}
-      style={{ marginTop: 20 }}
+      style={{ marginTop: 20,overflowX: 'hidden' }}
       validateMessages={validateMessages}
     >
       <Row gutter={[24, 8]}>

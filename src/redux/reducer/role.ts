@@ -1,6 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IWorkplace } from "../../interface/workplace";
-import { UpdateWorkplace, createWorkplace, deleteWorkplace, getOneWorkplace } from "../action/workplace";
 import { IRole } from "../../interface/auth";
 import { UpdateRole, createRole, deleteRole, getAllRoles, getOneRole } from "../action/role";
 

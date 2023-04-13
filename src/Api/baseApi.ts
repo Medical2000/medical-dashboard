@@ -24,4 +24,20 @@ export const ROLE_API = {
     DELETE: '/role/delete',
 };
 
+export const DEGREE_API = {
+    GET_ALL: '/degree/get-all',
+    GET_ONE: '/degree/get-one',
+    CREATE: '/degree/create',
+    UPDATE: '/degree/update',
+    DELETE: '/degree/delete',
+};
+
+export const BLOOD_GROUPS_API = {
+    GET_ALL: '/bloodGroup/get-all',
+    GET_ONE: '/bloodGroup/get-one',
+    CREATE: '/bloodGroup/create',
+    UPDATE: '/bloodGroup/update',
+    DELETE: '/bloodGroup/delete',
+};
+
 

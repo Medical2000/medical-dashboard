@@ -69,10 +69,12 @@ const MainApp: React.FC = () => {
     ]),
     getItem(
       <div className='label'>Patient management</div>, 'sub2', <AuditOutlined style={{ fontSize: 17 }} />, [
-      getItem('Option 7', '7'),
-      getItem('Option 8', '8'),
-      getItem('Option 9', '9'),
-      getItem('Option 10', '10'),
+      getItem(
+        <Link to="/home/patient">Patient </Link>, '7'),
+      getItem(
+        <Link to="/home/doctor">Medical Records </Link>, '8'),
+      getItem(
+        <Link to="home/bloodGroup"> Blood groups</Link>, '9'),
     ]),
     getItem(
       <div className='label'>Sytem Administration</div>, 'sub3', <SettingOutlined style={{ fontSize: 17 }} />, [
@@ -100,6 +102,7 @@ const MainApp: React.FC = () => {
           mode="inline"
           defaultSelectedKeys={['1']}
           items={items2}
+        // onScroll={}
         />
       </Sider>
       <Layout className="site-layout">
