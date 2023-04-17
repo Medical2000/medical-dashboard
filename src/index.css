@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.ant-modal-title{
+  font-size: 20px !important;
+  color: #FFF!important;
+  padding: 10px;
+  font-weight: 600 !important;
+  background-color: #1C6BA4;
+}
+.ant-modal-content{
+  padding: 0 !important;
+}
+.ant-modal-body{
+  padding: 20px !important;
+}
+.ant-modal-close-x{
+  color: #FFF;
+}
+.ant-btn-primary {
+  background-color: #1C6BA4;
+}
+
+.anticon[tabindex] {
+  color: #000;
+}

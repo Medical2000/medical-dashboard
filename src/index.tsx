@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import { SocketProvider } from './providers/socketProviders';
 
 
 const root = ReactDOM.createRoot(
@@ -12,8 +13,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <SocketProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </SocketProvider>
   </BrowserRouter>
 );

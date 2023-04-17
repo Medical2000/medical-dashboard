@@ -40,4 +40,12 @@ export const BLOOD_GROUPS_API = {
     DELETE: '/bloodGroup/delete',
 };
 
+export const DOCTOR_API = {
+    GET_ALL: '/doctor/get-all',
+    GET_ONE: '/doctor/get-one',
+    CREATE: '/doctor/create',
+    UPDATE: '/doctor/update',
+    DELETE: '/doctor/delete',
+};
+
 
