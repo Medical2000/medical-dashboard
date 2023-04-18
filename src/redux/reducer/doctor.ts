@@ -5,16 +5,16 @@ import { IDoctor } from "../../interface/doctor";
 import { UpdateDoctor, createDoctor, deleteDoctor, getAllDoctors, getOneDoctor } from "../action/doctor";
 
 interface DoctorState {
-  doctors: IDoctor[],
-  doctor: IDoctor,
+    doctors: IDoctor[],
+    doctor: IDoctor,
     loading: boolean,
     message: string,
     success: boolean | undefined,
 }
 
 const initialState: DoctorState = {
-  doctors: [],
-  doctor: {
+    doctors: [],
+    doctor: {
         id: "",
         specialty: "",
         license_number: "",
@@ -24,6 +24,20 @@ const initialState: DoctorState = {
         user_id: "",
         id_workplace: "",
         id_degree: "",
+        user: {
+            firstname: "",
+            lastname: "",
+            user_name: "",
+            password: "",
+            avatar_path: "",
+            email: "",
+            gender: "",
+            phone: "",
+            date_of_birth: "",
+            address: "",
+            status: "",
+            roleId: "",
+        }
     },
     loading: false,
     message: '',

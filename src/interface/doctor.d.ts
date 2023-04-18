@@ -1,3 +1,5 @@
+import { IUser } from "./auth"
+
 export interface IDegree {
     id?: string,
     name: string,
@@ -14,4 +16,5 @@ export interface IDoctor{
     user_id:string,
     id_workplace:string,
     id_degree:string,
+    user:IUser
 }

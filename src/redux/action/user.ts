@@ -35,19 +35,29 @@ export const createUser = createAsyncThunk(
     "user/post",
     async (data: IUser, thunkApi) => {
         try {
-            const response = await ApiClient.post(USER_API.CREATE, {
-                firstname: data.firstname,
-                lastname: data.lastname,
-                user_name: data.user_name,
-                password: data.password,
-                // avatar: data.avatar,
-                email: data.email,
-                gender: data.gender,
-                phone: data.phone,
-                date_of_birth: data.date_of_birth,
-                address: data.address,
-                status: data.status || true,
-                roleId: data.roleId
+
+            const formatDate = dayjs(data.date_of_birth).format('YYYY-MM-DD')
+            const formData = new FormData();
+            if (!data.status) {
+                data.status = true;
+            }
+
+            data.user_name && formData.append('user_name', data.user_name);
+            data.email && formData.append('email', data.email);
+            data.password && formData.append('password', data.password);
+            data.firstname && formData.append('firstname', data.firstname);
+            data.lastname && formData.append('lastname', data.lastname);
+            data.gender && formData.append('gender', data.gender);
+            data.phone && formData.append('phone', data.phone);
+            data.date_of_birth && formData.append('date_of_birth', formatDate);
+            data.address && formData.append('address', data.address);
+            data.status && formData.append('status', data.status);
+            data.roleId && formData.append('roleId', data.roleId);
+            data.avatar && formData.append('avatar', data.avatar.file.originFileObj);
+            const response = await ApiClient.post(USER_API.CREATE, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             })
             return response.data
         } catch (error: any) {
