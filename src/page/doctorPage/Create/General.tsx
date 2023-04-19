@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Col, DatePicker, Form, FormInstance, Input, Radio, Row, Select, Upload } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { IDoctor } from '../../interface/doctor';
+import { IDoctor } from '../../../interface/doctor';
 
 interface Iporps {
-  form: FormInstance<any>;
+  form?: FormInstance<any>;
   handleCreate: (values: IDoctor) => void;
 }
 
@@ -13,7 +13,7 @@ const layout = {
 };
 
 
-const Create = ({ handleCreate, form }: Iporps) => {
+const General = ({ handleCreate, form }: Iporps) => {
   const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -152,4 +152,4 @@ const Create = ({ handleCreate, form }: Iporps) => {
   )
 }
 
-export default Create
+export default General;

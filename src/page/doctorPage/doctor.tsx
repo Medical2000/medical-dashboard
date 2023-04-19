@@ -6,12 +6,14 @@ import { DeleteFilled } from '@ant-design/icons';
 import { showDeleteConfirm } from '../../components/showDeleteConfirm/showDeleteConfirm';
 import { showNotification } from '../../components/notification/notification';
 import './styles.css'
-import Create from './Create';
+import Create from './Create/General';
 import { CustomModal } from '../../components/modal/CustomModal';
 import Update from './Update';
 import { resetError } from '../../redux/reducer/user';
 import { IDoctor } from '../../interface/doctor';
 import { UpdateDoctor, createDoctor, deleteDoctor, getAllDoctors, getOneDoctor } from '../../redux/action/doctor';
+import { Creates } from './Create/Create';
+// import { Creates } from './create/Create';
 
 
 const Doctor = () => {
@@ -96,14 +98,7 @@ const Doctor = () => {
         setIsModalVisibleUpdate(true);
     };
 
-    const handleCreate = (values: IDoctor) => {
-        dispatch(createDoctor({ ...values })).then((res) => {
-            if (res.payload.status === 200) {
-                form.resetFields();
-                setIsModalVisibleCreate(false);
-            };
-        });
-    };
+
 
     const handleUpdate = (values: IDoctor) => {
         console.log(values)
@@ -124,9 +119,9 @@ const Doctor = () => {
                 width={1200}
                 form={form}
             >
-                <Create
-                    handleCreate={handleCreate}
+                <Creates
                     form={form}
+                    setIsModalVisibleCreate={setIsModalVisibleCreate}
                 />
             </CustomModal>
 

@@ -5,14 +5,12 @@ import {
   CaretDownOutlined,
   CreditCardOutlined,
   DashboardOutlined,
-  LinkOutlined,
   LogoutOutlined,
   MedicineBoxOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   SettingOutlined,
   UserOutlined,
-  UsergroupAddOutlined,
 } from '@ant-design/icons';
 import { Button, MenuProps, Avatar, Dropdown } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
