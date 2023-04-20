@@ -3,18 +3,21 @@ import { ReactNode } from "react";
 
 type CustomModalProps = {
     setIsModalVisible: (data: boolean) => void;
+    handleSave?: () => void;
     isModalVisible: boolean;
     children: ReactNode;
     title?: string;
     width?: string | number;
-    form?: FormInstance<any>
+    form?: FormInstance<any>;
+    centered?: boolean;
+    footer?: ReactNode;
 };
 
 export const CustomModal = (props: CustomModalProps) => {
-    const { setIsModalVisible, isModalVisible, children, title, width, form } = props;
+    const { setIsModalVisible, isModalVisible, children, title, width, form, centered, footer, handleSave } = props;
 
     const handleOk = () => {
-        setIsModalVisible(false);
+        handleSave && handleSave();
     };
 
     const handleCancel = () => {
@@ -30,7 +33,9 @@ export const CustomModal = (props: CustomModalProps) => {
             onCancel={handleCancel}
             width={width ? width : 1000}
             okText="Save"
-            footer={null}
+            centered={centered}
+            // okType='submit'
+            footer={footer}
             cancelText="Cancel"
             bodyStyle={{ overflowY: "auto", maxHeight: "calc(100vh - 200px)" }}
         >

@@ -10,7 +10,7 @@ interface Iporps {
 }
 
 const layout = {
-  labelCol: { span: 4 },
+  labelCol: { span: 6 },
 };
 
 

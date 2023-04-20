@@ -109,6 +109,7 @@ const Degree = () => {
         setIsModalVisible={setIsModalVisibleCreate}
         form={form}
         width={800}
+        footer={null}
       >
         <Create
           handleCreate={handleCreate}
@@ -121,6 +122,7 @@ const Degree = () => {
         isModalVisible={isModalVisibleUpdate}
         setIsModalVisible={setIsModalVisibleUpdate}
         width={800}
+        footer={null}
       >
         <Update
           handleUpdate={handleUpdate}

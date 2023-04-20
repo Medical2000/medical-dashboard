@@ -119,6 +119,8 @@ const Workplace = () => {
                 isModalVisible={isModalVisibleCreate}
                 setIsModalVisible={setIsModalVisibleCreate}
                 form={form}
+                footer={null}
+                centered={true}
             >
                 <Create
                     handleCreate={handleCreate}
@@ -130,6 +132,8 @@ const Workplace = () => {
                 title='Update a workplace'
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
+                footer={null}
+                centered={true}
             >
                 <Update
                     handleUpdate={handleUpdate}

@@ -132,7 +132,9 @@ const User = () => {
                 isModalVisible={isModalVisibleCreate}
                 setIsModalVisible={setIsModalVisibleCreate}
                 width={1200}
+                footer={null}
                 form={form}
+                centered={true}
             >
                 <Create
                     handleCreate={handleCreate}
@@ -146,13 +148,14 @@ const User = () => {
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
                 width={1200}
+                footer={null}
+                centered={true}
             >
                 <Update
                     handleUpdate={handleUpdate}
                     role={roleSelect.roles}
                     data={userSelect.user}
                     form={form}
-
                 />
             </CustomModal>
 

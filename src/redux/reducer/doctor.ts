@@ -80,8 +80,8 @@ const doctorSlice = createSlice({
         builder.addCase(createDoctor.fulfilled, (state, action) => {
             state.loading = false;
             state.success = true;
-            state.message = action.payload.message;
-            state.doctors.push(action.payload.data);
+            // state.message = action.payload.message;
+            // state.doctors.push(action.payload.data);
         });
         builder.addCase(createDoctor.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false;

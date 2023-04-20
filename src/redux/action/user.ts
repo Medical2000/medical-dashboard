@@ -35,7 +35,6 @@ export const createUser = createAsyncThunk(
     "user/post",
     async (data: IUser, thunkApi) => {
         try {
-
             const formatDate = dayjs(data.date_of_birth).format('YYYY-MM-DD')
             const formData = new FormData();
             if (!data.status) {

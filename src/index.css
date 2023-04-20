@@ -35,3 +35,6 @@ code {
 .anticon[tabindex] {
   color: #000;
 }
+.ant-modal-footer{
+  padding: 15px;
+}

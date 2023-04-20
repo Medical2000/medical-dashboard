@@ -10,9 +10,11 @@ import Create from './Create/General';
 import { CustomModal } from '../../components/modal/CustomModal';
 import Update from './Update';
 import { resetError } from '../../redux/reducer/user';
-import { IDoctor } from '../../interface/doctor';
+import { ICreateDoctor, IDoctor } from '../../interface/doctor';
 import { UpdateDoctor, createDoctor, deleteDoctor, getAllDoctors, getOneDoctor } from '../../redux/action/doctor';
 import { Creates } from './Create/Create';
+import { getAllWorkplaces } from '../../redux/action/workplace';
+import { getAllDegrees } from '../../redux/action/degree';
 // import { Creates } from './create/Create';
 
 
@@ -33,7 +35,7 @@ const Doctor = () => {
             title: 'Doctor',
             key: 'id',
             render: (record) => (
-                <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}><span >{record.firstname} {record.lastname}</span></a>
+                <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}><span >{record.user.firstname} {record.user. lastname}</span></a>
             ),
         },
 
@@ -45,12 +47,7 @@ const Doctor = () => {
             title: 'Phone',
             dataIndex: 'phone',
         },
-        {
-            title: 'Authorize',
-            render: (record) => (
-                <span >{record.role.role_name}</span>
-            ),
-        },
+       
 
         {
             title: 'Status',
@@ -69,6 +66,8 @@ const Doctor = () => {
     ];
     useEffect(() => {
         dispatch(getAllDoctors());
+        dispatch(getAllWorkplaces());
+        dispatch(getAllDegrees());
     }, [dispatch])
 
     useEffect(() => {
@@ -109,6 +108,23 @@ const Doctor = () => {
             };
         });
     };
+    const onFinish = (values: ICreateDoctor) => {
+        dispatch(createDoctor(values)).then((res) => {
+            if (res.payload.status === 200) {   
+                form.resetFields();
+                setIsModalVisibleCreate(false);
+            };
+        });
+    };
+
+    const handleCreate = () => {
+        form.validateFields().then((values) => {
+            onFinish(values);
+        }).catch((errorInfo) => {
+            console.log('Invalid form values:', errorInfo);
+        });
+    };
+
 
     return (
         <>
@@ -118,6 +134,8 @@ const Doctor = () => {
                 setIsModalVisible={setIsModalVisibleCreate}
                 width={1200}
                 form={form}
+                centered={true}
+                handleSave={handleCreate}
             >
                 <Creates
                     form={form}

@@ -11,7 +11,7 @@ interface Iporps {
 }
 
 const layout = {
-    labelCol: { span: 4 },
+    labelCol: { span: 6 },
     wrapperCol: { span: 16 },
 };
 
@@ -121,19 +121,19 @@ const Update = ({ handleUpdate, data }: Iporps) => {
                 </Col> */}
 
                 <Col span={12}>
-                    <Form.Item name={'formatDate'} label="Date of birth">
+                    <Form.Item name={'formatDate'} label="Năm sinh">
                         <DatePicker format='YYYY-MM-DD' size='large' />
                     </Form.Item>
                 </Col>
 
                 <Col span={12}>
-                    <Form.Item name={'address'} label="Address">
+                    <Form.Item name={'address'} label="Địa chỉ">
                         <Input />
                     </Form.Item>
                 </Col>
 
                 <Col span={12}>
-                    <Form.Item name={'status'} label="Status">
+                    <Form.Item name={'status'} label="Trạng thái">
                         <Radio.Group defaultValue={true}  >
                             <Radio value={true}>Active</Radio>
                             <Radio value={false}>Inactive</Radio>

@@ -101,6 +101,7 @@ const Role = () => {
                 setIsModalVisible={setIsModalVisibleCreate}
                 form={form}
                 width={800}
+                footer={null}
             >
                 <Create
                     handleCreate={handleCreate}
@@ -113,6 +114,7 @@ const Role = () => {
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
                 width={800}
+                footer={null}
             >
                 <Update
                     handleUpdate={handleUpdate}
