@@ -16,7 +16,7 @@ export interface IDoctor {
     user_id: string,
     id_workplace: string,
     id_degree: string,
-    user: IUser
+    user: IUser,
 }
 
 export interface ICreateDoctor {

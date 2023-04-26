@@ -8,13 +8,13 @@ import { showNotification } from '../../components/notification/notification';
 import './styles.css'
 import Create from './Create/General';
 import { CustomModal } from '../../components/modal/CustomModal';
-import Update from './Update';
-import { resetError } from '../../redux/reducer/user';
+import { Update } from './Update';
 import { ICreateDoctor, IDoctor } from '../../interface/doctor';
 import { UpdateDoctor, createDoctor, deleteDoctor, getAllDoctors, getOneDoctor } from '../../redux/action/doctor';
 import { Creates } from './Create/Create';
 import { getAllWorkplaces } from '../../redux/action/workplace';
 import { getAllDegrees } from '../../redux/action/degree';
+import { resetError } from '../../redux/reducer/doctor';
 // import { Creates } from './create/Create';
 
 
@@ -25,38 +25,47 @@ const Doctor = () => {
     const [form] = Form.useForm();
     const [isModalVisibleCreate, setIsModalVisibleCreate] = useState(false);
     const [isModalVisibleUpdate, setIsModalVisibleUpdate] = useState(false);
+    const [id, setId] = useState('');
     const columns: ColumnsType<IDoctor> = [
         {
-            title: 'Nbr.',
+            title: 'STT',
             dataIndex: 'nbr',
             rowScope: 'row',
         },
         {
-            title: 'Doctor',
+            title: 'Bác sĩ',
             key: 'id',
             render: (record) => (
-                <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}><span >{record.user.firstname} {record.user. lastname}</span></a>
+                <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}><span >{record.user.firstname} {record.user.lastname}</span></a>
             ),
+        },
+        {
+            title: 'Chuyên ngành',
+            dataIndex: 'specialty'
+        },
+        {
+            title: 'Số giấy phép',
+            dataIndex: 'license_number'
         },
 
         {
             title: 'Email',
-            dataIndex: 'email',
+            render: (text, record) => record?.user?.email
         },
         {
-            title: 'Phone',
-            dataIndex: 'phone',
+            title: 'Điện thoại',
+            render: (text, record) => record?.user?.phone
         },
-       
+
 
         {
-            title: 'Status',
+            title: 'Trạng thái',
             render: (record) => (
-                <a style={{ fontWeight: 600 }} >{record.status ? "Active" : "Inactive"}</a>
+                <a style={{ fontWeight: 600 }} >{record.user.status ? "Active" : "Inactive"}</a>
             ),
         },
         {
-            title: 'Action',
+            title: 'Hành động',
             key: 'action',
             align: 'center',
             render: (record) => (
@@ -93,25 +102,33 @@ const Doctor = () => {
 
     const showModalUpdate = (id: string) => {
         dispatch(getOneDoctor(id));
-
+        setId(id)
         setIsModalVisibleUpdate(true);
     };
 
-
-
-    const handleUpdate = (values: IDoctor) => {
-        console.log(values)
-        dispatch(UpdateDoctor(values)).then((res) => {
+    const onUpdate = (values: ICreateDoctor) => {
+        // console.log('values',values)
+        dispatch(UpdateDoctor({ ...values, id })).then((res) => {
             if (res.payload.status === 200) {
-                // form.resetFields();
+                form.resetFields();
+                dispatch(getAllDoctors());  
                 setIsModalVisibleUpdate(false);
             };
         });
     };
+
+    const handleUpdate = () => {
+        form.validateFields().then((values) => {
+            onUpdate(values);
+        }).catch((errorInfo) => {
+            console.log('Invalid form values:', errorInfo);
+        });
+    };
     const onFinish = (values: ICreateDoctor) => {
         dispatch(createDoctor(values)).then((res) => {
-            if (res.payload.status === 200) {   
+            if (res.payload.status === 200) {
                 form.resetFields();
+                dispatch(getAllDoctors());
                 setIsModalVisibleCreate(false);
             };
         });
@@ -129,7 +146,7 @@ const Doctor = () => {
     return (
         <>
             <CustomModal
-                title='Create a new  Doctor'
+                title='Tạo bác sĩ mới'
                 isModalVisible={isModalVisibleCreate}
                 setIsModalVisible={setIsModalVisibleCreate}
                 width={1200}
@@ -144,22 +161,24 @@ const Doctor = () => {
             </CustomModal>
 
             <CustomModal
-                title='Update a Doctor'
+                title='Cập nhật bác sĩ'
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
+                form={form}
                 width={1200}
+                centered={true}
+                handleSave={handleUpdate}
             >
                 <Update
-                    handleUpdate={handleUpdate}
-                    data={DoctorSelect.doctor}
                     form={form}
-
+                    setIsModalVisibleCreate={setIsModalVisibleCreate}
+                    data={DoctorSelect.doctor}
                 />
             </CustomModal>
 
             <div className='headerList' >
                 <Search
-                    placeholder="Enter search Doctor..."
+                    placeholder="Tìm kiếm bác sĩ..."
                     allowClear
                     size="large"
                     style={{ width: '70%' }}
@@ -172,10 +191,11 @@ const Doctor = () => {
                     style={{ backgroundColor: '#1C6BA4' }}
                     onClick={showModalCreate}
                 >
-                    Add Doctor
+                    Tạo bác sĩ
                 </Button>
             </div>
             <Table
+                scroll={{ x: 1000 }}
                 loading={DoctorSelect.loading}
                 bordered columns={columns}
                 dataSource={DoctorSelect.doctors.map((item, index) => ({ ...item, nbr: index + 1, key: index }))} />

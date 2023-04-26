@@ -35,7 +35,7 @@ export const createDoctor = createAsyncThunk(
     "Doctor/post",
     async (data: ICreateDoctor, thunkApi) => {
         try {
-            console.log(data);
+            console.log(data.status);
             const response = await ApiClient.post(DOCTOR_API.CREATE, {
                 firstname: data.firstname,
                 lastname: data.lastname,
@@ -44,9 +44,9 @@ export const createDoctor = createAsyncThunk(
                 email: data.email,
                 gender: data.gender,
                 phone: data.phone,
-                date_of_birth: data.formatDate,
+                date_of_birth: data.date_of_birth,
                 address: data.address,
-                status: data.status || true,
+                status: data.status === undefined ? true : data.status,
                 specialty: data.specialty,
                 license_number: data.license_number,
                 about: data.about,
@@ -67,9 +67,20 @@ export const createDoctor = createAsyncThunk(
 
 export const UpdateDoctor = createAsyncThunk(
     "Doctor/patch",
-    async (data: IDoctor, thunkApi) => {
+    async (data: ICreateDoctor, thunkApi) => {
+        console.log(data.status)
         try {
             const response = await ApiClient.patch(`${DOCTOR_API.UPDATE}${data.id}`, {
+                firstname: data.firstname,
+                lastname: data.lastname,
+                user_name: data.user_name,
+                password: data.password,
+                email: data.email,
+                gender: data.gender,
+                phone: data.phone,
+                date_of_birth: data.formatDate,
+                address: data.address,
+                status: data.status === "" ? true : data.status,
                 specialty: data.specialty,
                 license_number: data.license_number,
                 about: data.about,

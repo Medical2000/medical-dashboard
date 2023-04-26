@@ -10,22 +10,12 @@ export const Creates = ({ form, setIsModalVisibleCreate }: { setIsModalVisibleCr
 
     const DegreesSelect = useAppSelector((state) => state.degree);
     const WorkplaceSelect = useAppSelector((state) => state.workplace);
-    // const handleCreate = (values: IDoctor) => {
-    //     dispatch(createDoctor({ ...values })).then((res) => {
-    //         if (res.payload.status === 200) {
-    //             form.resetFields();
-    //             setIsModalVisibleCreate(false);
-    //         };
-    //     });
-    // };
 
     const items: TabsProps['items'] = [
         {
             key: '1',
             label: `General`,
             children: <General
-
-
             />,
         },
         {

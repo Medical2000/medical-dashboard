@@ -80,7 +80,7 @@ const doctorSlice = createSlice({
         builder.addCase(createDoctor.fulfilled, (state, action) => {
             state.loading = false;
             state.success = true;
-            // state.message = action.payload.message;
+            state.message = action.payload.message;
             // state.doctors.push(action.payload.data);
         });
         builder.addCase(createDoctor.rejected, (state, action: PayloadAction<any>) => {
@@ -96,17 +96,6 @@ const doctorSlice = createSlice({
             state.loading = false;
             state.success = true;
             state.message = action.payload.message;
-            state.doctors = state.doctors.map((e) => {
-                if (e.id === action.payload.data.id) {
-                    // e.name = action.payload.data.name;
-                    // e.phone = action.payload.data.phone;
-                    // e.email = action.payload.data.email;
-                    // e.city = action.payload.data.city;
-                    // e.address = action.payload.data.address;
-                    // e.type = action.payload.data.type;
-                }
-                return e;
-            })
         });
         builder.addCase(UpdateDoctor.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false;

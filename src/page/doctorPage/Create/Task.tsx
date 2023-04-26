@@ -4,8 +4,8 @@ import { IDegree } from '../../../interface/doctor';
 import { IWorkplace } from '../../../interface/workplace';
 
 interface Iporps {
-  WorkplaceSelect: IWorkplace[];
-  DegreesSelect: IDegree[];
+  WorkplaceSelect?: IWorkplace[];
+  DegreesSelect?: IDegree[];
 }
 
 const layout = {
@@ -14,7 +14,7 @@ const layout = {
 
 
 const Task = ({ WorkplaceSelect, DegreesSelect }: Iporps) => {
-
+  const { TextArea } = Input;
   return (
 
     <Row gutter={[24, 8]}>
@@ -43,7 +43,7 @@ const Task = ({ WorkplaceSelect, DegreesSelect }: Iporps) => {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-            options={WorkplaceSelect.map((e) => ({
+            options={WorkplaceSelect&& WorkplaceSelect.map((e) => ({
               value: e.id,
               label: e.name
             }))}
@@ -60,10 +60,21 @@ const Task = ({ WorkplaceSelect, DegreesSelect }: Iporps) => {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-            options={DegreesSelect.map((e) => ({
+            options={DegreesSelect && DegreesSelect.map((e) => ({
               value: e.id,
               label: e.name
             }))}
+          />
+        </Form.Item>
+      </Col>
+
+      <Col span={12}>
+        <Form.Item name={'about'} label="Giới thiệu">
+          <TextArea
+            showCount
+            maxLength={500}
+            style={{ height:90, marginBottom: 10, resize:'none' }}
+            placeholder="Giới thiệu về bác sĩ"
           />
         </Form.Item>
       </Col>

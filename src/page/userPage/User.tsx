@@ -178,6 +178,7 @@ const User = () => {
                 </Button>
             </div>
             <Table
+                scroll={{ x: 1000 }}
                 loading={userSelect.loading}
                 bordered columns={columns}
                 dataSource={userSelect.users.map((item, index) => ({ ...item, nbr: index + 1, key: index }))} />

@@ -35,8 +35,6 @@ const Update = ({ handleUpdate, data, role }: Iporps) => {
         form.setFieldsValue({ ...data, formatDate })
     }, [data])
 
-    const formatDate = dayjs(data.date_of_birth);
-    console.log(formatDate)
     return (
         <Form
             {...layout}
@@ -138,17 +136,6 @@ const Update = ({ handleUpdate, data, role }: Iporps) => {
                             <Radio value={true}>Active</Radio>
                             <Radio value={false}>Inactive</Radio>
                         </Radio.Group>
-                    </Form.Item>
-                </Col>
-
-                <Col span={12}>
-                    <Form.Item name={'avatar'} label="Avatar">
-                        <Upload listType="picture-circle">
-                            <div>
-                                <PlusOutlined />
-                                <div style={{ marginTop: 8 }}>Upload</div>
-                            </div>
-                        </Upload>
                     </Form.Item>
                 </Col>
 

@@ -130,17 +130,6 @@ const Create = ({ handleCreate, form, role }: Iporps) => {
           </Form.Item>
         </Col>
 
-        <Col span={12}>
-          <Form.Item name={'avatar'} label="Avatar">
-            <Upload listType="picture-circle">
-              <div>
-                <PlusOutlined />
-                <div style={{ marginTop: 8 }}>Upload</div>
-              </div>
-            </Upload>
-          </Form.Item>
-        </Col>
-
       </Row>
 
       <Row justify={"end"} align={'bottom'} style={{ marginTop: 30 }} >

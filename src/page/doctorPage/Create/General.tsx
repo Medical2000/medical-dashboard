@@ -1,8 +1,9 @@
 
 import { Button, Col, DatePicker, Form, FormInstance, Input, Radio, Row, Select, Upload } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { IDoctor } from '../../../interface/doctor';
 
-const General = () => {
+const General = ({ data }: { data?: IDoctor }) => {
+
   return (
     <Row gutter={[24, 8]}>
       <Col span={12}>
@@ -10,11 +11,14 @@ const General = () => {
           <Input />
         </Form.Item>
       </Col>
-      <Col span={12}>
-        <Form.Item name={'password'} label="Password" rules={[{ required: true }]} >
-          <Input />
-        </Form.Item>
-      </Col>
+      {
+        !data && (<Col span={12}>
+          <Form.Item name={'password'} label="Password"  >
+            <Input />
+          </Form.Item>
+        </Col>)
+      }
+
       <Col span={12}>
         <Form.Item name={'email'} label="Email" rules={[{ required: true }]} >
           <Input />
@@ -65,7 +69,7 @@ const General = () => {
         </Form.Item>
       </Col>
       <Col span={12}>
-        <Form.Item name={'date_of_birth'} label="Date of birth">
+        <Form.Item name={data ? 'formatDate' : 'date_of_birth'} label="Date of birth">
           <DatePicker format='YYYY-MM-DD' size='large' />
         </Form.Item>
       </Col>
@@ -84,18 +88,6 @@ const General = () => {
           </Radio.Group>
         </Form.Item>
       </Col>
-
-      <Col span={12}>
-        <Form.Item name={'avatar'} label="Avatar">
-          <Upload listType="picture-circle">
-            <div>
-              <PlusOutlined />
-              <div style={{ marginTop: 8 }}>Upload</div>
-            </div>
-          </Upload>
-        </Form.Item>
-      </Col>
-
     </Row>
   )
 }

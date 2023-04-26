@@ -161,6 +161,7 @@ const Workplace = () => {
                 </Button>
             </div>
             <Table
+                scroll={{ x: 1000 }}
                 loading={workplaceSelect.loading}
                 bordered columns={columns}
                 dataSource={workplaceSelect.workplaces.map((item, index) => ({ ...item, nbr: index + 1, key: index }))} />
