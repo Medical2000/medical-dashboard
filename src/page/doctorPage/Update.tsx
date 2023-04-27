@@ -12,7 +12,6 @@ export const Update = ({ form, setIsModalVisibleCreate, data }: { setIsModalVisi
 
     const DegreesSelect = useAppSelector((state) => state.degree);
     const WorkplaceSelect = useAppSelector((state) => state.workplace);
-
     React.useEffect(() => {
         const email = data.user.email;
         const firstname = data.user.firstname;

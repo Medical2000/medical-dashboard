@@ -24,6 +24,7 @@ export const getOnePatient = createAsyncThunk(
     async (id: string, thunkApi) => {
         try {
             const response = await ApiClient.get(`${PATIENT_API.GET_ONE}${id}`);
+           console.log(response)
             return response.data
         } catch (error: any) {
             console.log(error)
@@ -36,7 +37,6 @@ export const createPatient = createAsyncThunk(
     "Patient/post",
     async (data: ICreatePatient, thunkApi) => {
         try {
-            console.log(data.status);
             const response = await ApiClient.post(PATIENT_API.CREATE, {
                 firstname: data.firstname,
                 lastname: data.lastname,
@@ -48,14 +48,10 @@ export const createPatient = createAsyncThunk(
                 date_of_birth: data.date_of_birth,
                 address: data.address,
                 status: data.status === undefined ? true : data.status,
-                // specialty: data.specialty,
-                // license_number: data.license_number,
-                // about: data.about,
-                // exp: data.exp,
-                // rating: data.rating,
-                // user_id: data.user_id,
-                // id_workplace: data.id_workplace,
-                // id_degree: data.id_degree,
+                health_insurance_number:data.health_insurance_number,
+                height:data.height,
+                weight:data.weight,
+                id_blood_groups:data.id_blood_groups
             });
             return response.data
         } catch (error: any) {
@@ -79,17 +75,13 @@ export const UpdatePatient = createAsyncThunk(
                 email: data.email,
                 gender: data.gender,
                 phone: data.phone,
-                date_of_birth: data.formatDate,
+                date_of_birth: data.date_of_birth,
                 address: data.address,
-                status: data.status === "" ? true : data.status,
-                // specialty: data.specialty,
-                // license_number: data.license_number,
-                // about: data.about,
-                // exp: data.exp,
-                // rating: data.rating,
-                // user_id: data.user_id,
-                // id_workplace: data.id_workplace,
-                // id_degree: data.id_degree,
+                status: data.status === undefined ? true : data.status,
+                health_insurance_number:data.health_insurance_number,
+                height:data.height,
+                weight:data.weight,
+                id_blood_groups:data.id_blood_groups
             });
             return response.data
         } catch (error: any) {

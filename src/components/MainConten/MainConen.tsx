@@ -5,7 +5,7 @@ import {
     Route,
     Navigate
 } from "react-router-dom";
-import Doctor from '../../page/doctorPage/Doctor';
+import Doctor from '../../page/doctorPage/doctor';
 import Home from '../../page/homePage/Home';
 import Workplace from '../../page/workplacePage/Workplace';
 import Degree from '../../page/degreePage/Degree';

@@ -15,6 +15,7 @@ import { getAllDegrees } from '../../redux/action/degree';
 import { ICreatePatient, IPatient } from '../../interface/patient';
 import { UpdatePatient, createPatient, deletePatient, getAllPatients, getOnePatient } from '../../redux/action/patient';
 import { resetError } from '../../redux/reducer/patient';
+import { getAllBloodGroups } from '../../redux/action/bloodGroup';
 
 
 
@@ -75,8 +76,7 @@ const Patient = () => {
     ];
     useEffect(() => {
         dispatch(getAllPatients());
-        dispatch(getAllWorkplaces());
-        dispatch(getAllDegrees());
+        dispatch(getAllBloodGroups());
     }, [dispatch])
 
     useEffect(() => {
@@ -107,7 +107,6 @@ const Patient = () => {
     };
 
     const onUpdate = (values: ICreatePatient) => {
-        // console.log('values',values)
         dispatch(UpdatePatient({ ...values, id })).then((res) => {
             if (res.payload.status === 200) {
                 form.resetFields();
@@ -171,14 +170,13 @@ const Patient = () => {
             >
                 <Update
                     form={form}
-                    setIsModalVisibleCreate={setIsModalVisibleCreate}
                     data={PatientSelect.patient}
                 />
             </CustomModal>
 
             <div className='headerList' >
                 <Search
-                    placeholder="Tìm kiếm bác sĩ..."
+                    placeholder="Tìm kiếm bệnh nhân..."
                     allowClear
                     size="large"
                     style={{ width: '70%' }}

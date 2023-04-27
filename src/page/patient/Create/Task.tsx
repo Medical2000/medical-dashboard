@@ -36,7 +36,7 @@ const Task = ({ bloodGroups }: Iporps) => {
       </Col>
 
       <Col span={12}>
-        <Form.Item name={'id_workplace'} label="Nhóm máu">
+        <Form.Item name={'id_blood_groups'} label="Nhóm máu">
           <Select
             showSearch
             placeholder="Chọn nhóm máu"

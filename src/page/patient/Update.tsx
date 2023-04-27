@@ -9,9 +9,10 @@ import { IPatient } from '../../interface/patient';
 const layout = {
     labelCol: { span: 6 },
 };
-export const Update = ({ form, setIsModalVisibleCreate, data }: { setIsModalVisibleCreate: (value: boolean) => void, form: FormInstance<any>, data: IPatient }) => {
+export const Update = ({ form, data }: { form: FormInstance<any>, data: IPatient }) => {
 
     const bloodGroups = useAppSelector((state) => state.bloodGroup);
+    console.log(data)
 
     React.useEffect(() => {
         const email = data.user.email;
