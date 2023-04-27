@@ -48,4 +48,12 @@ export const DOCTOR_API = {
     DELETE: '/doctor/delete',
 };
 
+export const PATIENT_API = {
+    GET_ALL: '/patient/get-all',
+    GET_ONE: '/patient/get-one',
+    CREATE: '/patient/create',
+    UPDATE: '/patient/update',
+    DELETE: '/patient/delete',
+};
+
 

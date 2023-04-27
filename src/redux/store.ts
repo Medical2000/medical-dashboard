@@ -6,6 +6,7 @@ import roleSlice from './reducer/role';
 import degreeSlice from './reducer/degree';
 import bloodGroupSlice from './reducer/bloodGroup';
 import soctorSlice from './reducer/doctor';
+import patientSlice from './reducer/patient';
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         degree: degreeSlice.reducer,
         bloodGroup: bloodGroupSlice.reducer,
         doctor: soctorSlice.reducer,
+        patient:patientSlice.reducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,

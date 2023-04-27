@@ -12,6 +12,7 @@ import Degree from '../../page/degreePage/Degree';
 import User from '../../page/userPage/User';
 import Role from '../../page/rolePage/Role';
 import BloodGroups from '../../page/bloodGroups/BloodGroups';
+import Patient from '../../page/patient/Patient';
 
 const MainContainer = () => {
     return (
@@ -23,7 +24,7 @@ const MainContainer = () => {
                 <Route path="home/degree" element={<Degree />} />
                 <Route path="home/user" element={<User />} />
                 <Route path="home/role" element={<Role />} />
-                <Route path="home/patient" element={<Role />} />
+                <Route path="home/patient" element={<Patient />} />
                 <Route path="home/bloodGroup" element={<BloodGroups />} />
             </Routes>
         </div>
