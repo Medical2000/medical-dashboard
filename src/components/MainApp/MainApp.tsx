@@ -53,33 +53,33 @@ const MainApp: React.FC = () => {
   };
   const items2: MenuItem[] = [
     getItem(
-      <Link className='label' to="/home"> Dashboard</Link>, '1', <DashboardOutlined style={{ fontSize: 17 }} />),
+      <Link className='label' to="/home"> Trang chủ</Link>, '1', <DashboardOutlined style={{ fontSize: 17 }} />),
     getItem(
-      <div className='label' >Navigation Two</div>, '2', <CreditCardOutlined style={{ fontSize: 17 }} />),
+      <Link className='label' to="home/appointment" >Lịch đặt khám bệnh</Link>, '2', <CreditCardOutlined style={{ fontSize: 17 }} />),
     getItem(
-      <div className='label'>Doctor management</div>, 'sub1', <MedicineBoxOutlined style={{ fontSize: 17 }} />, [
+      <div className='label'>Quản lí bác sĩ</div>, 'sub1', <MedicineBoxOutlined style={{ fontSize: 17 }} />, [
       getItem(
-        <Link to="/home/doctor"> Doctor</Link>, '3'),
+        <Link to="/home/doctor">Bác sĩ</Link>, '3'),
       getItem(
-        <Link to="/home/workplace"> Workplace</Link>, '4'),
+        <Link to="/home/workplace">Nơi làm việc</Link>, '4'),
       getItem(
-        <Link to="/home/degree"> Degree</Link>, '5'),
+        <Link to="/home/degree">Bằng cấp</Link>, '5'),
     ]),
     getItem(
-      <div className='label'>Patient management</div>, 'sub2', <AuditOutlined style={{ fontSize: 17 }} />, [
+      <div className='label'>Quản lí bệnh nhân</div>, 'sub2', <AuditOutlined style={{ fontSize: 17 }} />, [
       getItem(
-        <Link to="/home/patient">Patient </Link>, '7'),
+        <Link to="/home/patient">Bệnh nhân</Link>, '7'),
       getItem(
-        <Link to="/home/doctor">Medical Records </Link>, '8'),
+        <Link to="/home/doctor">Bệnh án</Link>, '8'),
       getItem(
-        <Link to="home/bloodGroup"> Blood groups</Link>, '9'),
+        <Link to="home/bloodGroup">Nhóm máu</Link>, '9'),
     ]),
     getItem(
-      <div className='label'>Sytem Administration</div>, 'sub3', <SettingOutlined style={{ fontSize: 17 }} />, [
+      <div className='label'>Quản trị hệ thống</div>, 'sub3', <SettingOutlined style={{ fontSize: 17 }} />, [
       getItem(
-        <Link to="/home/user">User </Link>, '11',),
+        <Link to="/home/user">Người dùng</Link>, '11',),
       getItem(
-        <Link to="/home/role">Role </Link>, '12',),
+        <Link to="/home/role">Quyền</Link>, '12',),
 
     ])
 

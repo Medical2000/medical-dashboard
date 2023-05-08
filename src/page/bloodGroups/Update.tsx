@@ -34,12 +34,12 @@ const Update = ({ handleUpdate, data }: Iporps) => {
             style={{ marginTop: 20 }}
             validateMessages={validateMessages}
         >
-            <Form.Item name={'blood_name'} label="Blood Name" rules={[{ required: true }]}>
+            <Form.Item name={'blood_name'} label="Tên nhóm máu" rules={[{ required: true }]}>
                 <Input />
             </Form.Item>
             <Row justify={"end"} align={'bottom'} style={{ marginTop: 30 }} >
                 <Button type="primary" htmlType="submit">
-                    Save
+                    Lưu
                 </Button>
             </Row>
 

@@ -36,15 +36,15 @@ const Update = ({ handleUpdate, data }: Iporps) => {
             style={{ marginTop: 20 }}
             validateMessages={validateMessages}
         >
-            <Form.Item name={'name'} label="Name degree" rules={[{ required: true }]}>
+            <Form.Item name={'name'} label="Tên bằng cấp" rules={[{ required: true }]}>
                 <Input />
             </Form.Item>
-            <Form.Item name={'abbreviation'} label="Abbreviation" >
+            <Form.Item name={'abbreviation'} label="Viết tắt" >
                 <Input />
             </Form.Item>
             <Row justify={"end"} align={'bottom'} style={{ marginTop: 30 }} >
                 <Button type="primary" htmlType="submit">
-                    Save
+                    Lưu
                 </Button>
             </Row>
 

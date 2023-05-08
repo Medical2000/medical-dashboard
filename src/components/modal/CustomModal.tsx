@@ -32,11 +32,11 @@ export const CustomModal = (props: CustomModalProps) => {
             onOk={handleOk}
             onCancel={handleCancel}
             width={width ? width : 1000}
-            okText="Save"
+            okText="Lưu"
             centered={centered}
             // okType='submit'
             footer={footer}
-            cancelText="Cancel"
+            cancelText="Hủy"
             bodyStyle={{ overflowY: "auto", maxHeight: "calc(100vh - 200px)" }}
         >
             {children}

@@ -12,7 +12,7 @@ export interface IUser {
   firstname: string,
   lastname: string,
   user_name: string,
-  password: string,
+  password?: string,
   avatar_path: string,
   avatar?: any,
   email: string,
@@ -21,7 +21,7 @@ export interface IUser {
   date_of_birth: string,
   formatDate?: string,
   address: string,
-  status: any,
-  roleId: string,
+  status?: any,
+  roleId?: string,
   role?: IRole,
 }

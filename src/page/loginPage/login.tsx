@@ -37,7 +37,7 @@ export const Login = () => {
                         autoComplete="off"
                     >
                         <Form.Item
-                            label="Username"
+                            label="Tài khoản"
                             name="user_name"
                             className="formLogin"
                             style={{ flexDirection: 'column', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -47,7 +47,7 @@ export const Login = () => {
                         </Form.Item>
 
                         <Form.Item
-                            label="Password"
+                            label="Mật khẩu"
                             name="password"
                             className="formLogin"
                             rules={[{ required: true, message: 'Please input your password!' }]}
@@ -56,12 +56,12 @@ export const Login = () => {
                         </Form.Item>
 
                         <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 9, span: 16 }}>
-                            <Checkbox>Remember me</Checkbox>
+                            <Checkbox>Ghi nhớ</Checkbox>
                         </Form.Item>
 
                         <Form.Item wrapperCol={{ offset: 2, span: 20 }}>
                             <Button style={{ width: '100%', height: 40, backgroundColor: '#1C6BA4' }} type="primary" htmlType="submit">
-                                Sign In
+                                Đăng nhập
                             </Button>
                         </Form.Item>
                     </Form>

@@ -26,12 +26,12 @@ const User = () => {
     const [isModalVisibleUpdate, setIsModalVisibleUpdate] = useState(false);
     const columns: ColumnsType<IUser> = [
         {
-            title: 'Nbr.',
+            title: 'STT',
             dataIndex: 'nbr',
             rowScope: 'row',
         },
         {
-            title: 'User',
+            title: 'Tài khoản',
             key: 'id',
             render: (record) => (
                 <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}>{record.user_name}</a>
@@ -39,7 +39,7 @@ const User = () => {
         },
 
         {
-            title: 'Full Name',
+            title: 'Tên người dùng',
             render: (record) => (
                 <span >{record.firstname} {record.lastname}</span>
             ),
@@ -49,24 +49,24 @@ const User = () => {
             dataIndex: 'email',
         },
         {
-            title: 'Phone',
+            title: 'Số điện thoại',
             dataIndex: 'phone',
         },
         {
-            title: 'Authorize',
+            title: 'Quyền',
             render: (record) => (
                 <span >{record.role.role_name}</span>
             ),
         },
 
         {
-            title: 'Status',
+            title: 'Trạng thái',
             render: (record) => (
                 <a style={{ fontWeight: 600 }} >{record.status ? "Active" : "Inactive"}</a>
             ),
         },
         {
-            title: 'Action',
+            title: 'Hành động',
             key: 'action',
             align: 'center',
             render: (record) => (
@@ -128,7 +128,7 @@ const User = () => {
     return (
         <>
             <CustomModal
-                title='Create a new  User'
+                title='Tạo người dùng mới'
                 isModalVisible={isModalVisibleCreate}
                 setIsModalVisible={setIsModalVisibleCreate}
                 width={1200}
@@ -144,7 +144,7 @@ const User = () => {
             </CustomModal>
 
             <CustomModal
-                title='Update a User'
+                title='Người dùng'
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
                 width={1200}
@@ -174,7 +174,7 @@ const User = () => {
                     style={{ backgroundColor: '#1C6BA4' }}
                     onClick={showModalCreate}
                 >
-                    Add user
+                    Tạo mới
                 </Button>
             </div>
             <Table

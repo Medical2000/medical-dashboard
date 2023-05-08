@@ -28,14 +28,14 @@ const Role = () => {
             rowScope: 'row',
         },
         {
-            title: 'Role Name',
+            title: 'Tên quyền',
             key: 'id',
             render: (record) => (
                 <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}>{record.role_name}</a>
             ),
         },
         {
-            title: 'Action',
+            title: 'Hành động',
             key: 'action',
             align: 'center',
             render: (record) => (
@@ -96,7 +96,7 @@ const Role = () => {
     return (
         <>
             <CustomModal
-                title='Create a new  Role'
+                title='Tạo quyền mới'
                 isModalVisible={isModalVisibleCreate}
                 setIsModalVisible={setIsModalVisibleCreate}
                 form={form}
@@ -110,7 +110,7 @@ const Role = () => {
             </CustomModal>
 
             <CustomModal
-                title='Update a Role'
+                title='Quyền'
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
                 width={800}
@@ -125,7 +125,7 @@ const Role = () => {
 
             <div className='headerList' >
                 <Search
-                    placeholder="Enter search Role..."
+                    placeholder="Tìm kiếm quyền..."
                     allowClear
                     size="large"
                     style={{ width: '70%' }}
@@ -138,7 +138,7 @@ const Role = () => {
                     style={{ backgroundColor: '#1C6BA4' }}
                     onClick={showModalCreate}
                 >
-                    Add Role
+                    Tạo mới
                 </Button>
             </div>
             

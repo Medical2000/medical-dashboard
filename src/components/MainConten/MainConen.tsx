@@ -13,6 +13,7 @@ import User from '../../page/userPage/User';
 import Role from '../../page/rolePage/Role';
 import BloodGroups from '../../page/bloodGroups/BloodGroups';
 import Patient from '../../page/patient/Patient';
+import Appointment from '../../page/appointment/Appointment';
 
 const MainContainer = () => {
     return (
@@ -26,6 +27,7 @@ const MainContainer = () => {
                 <Route path="home/role" element={<Role />} />
                 <Route path="home/patient" element={<Patient />} />
                 <Route path="home/bloodGroup" element={<BloodGroups />} />
+                <Route path="home/appointment" element={<Appointment />} />
             </Routes>
         </div>
     )

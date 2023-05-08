@@ -29,12 +29,12 @@ const Create = ({ handleCreate, form }: Iporps) => {
       validateMessages={validateMessages}
     >
 
-      <Form.Item name={'role_name'} label="Role name" rules={[{ required: true }]}>
+      <Form.Item name={'role_name'} label="Tên quyền" rules={[{ required: true }]}>
         <Input />
       </Form.Item>
       <Row justify={"end"} align={'bottom'} style={{ marginTop: 30 }} >
         <Button type="primary" htmlType="submit">
-          Save
+          Lưu
         </Button>
       </Row>
 

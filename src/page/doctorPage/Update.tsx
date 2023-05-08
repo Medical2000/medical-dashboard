@@ -29,14 +29,14 @@ export const Update = ({ form, setIsModalVisibleCreate, data }: { setIsModalVisi
     const items: TabsProps['items'] = [
         {
             key: '1',
-            label: `General`,
+            label: `Chung`,
             children: <General
                 data={data}
             />,
         },
         {
             key: '2',
-            label: `Tasks`,
+            label: `Công việc`,
             children: <Task
                 DegreesSelect={DegreesSelect.degrees}
                 WorkplaceSelect={WorkplaceSelect.workplaces} />,

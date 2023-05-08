@@ -23,19 +23,19 @@ const BloodGroups = () => {
     const [isModalVisibleUpdate, setIsModalVisibleUpdate] = useState(false);
     const columns: ColumnsType<IBloodGroup> = [
         {
-            title: 'Nbr.',
+            title: 'STT',
             dataIndex: 'nbr',
             rowScope: 'row',
         },
         {
-            title: 'Blood Name',
+            title: 'Tên nhóm máu',
             key: 'id',
             render: (record) => (
                 <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}>{record.blood_name}</a>
             ),
         },
         {
-            title: 'Action',
+            title: 'Hành động',
             key: 'action',
             align: 'center',
             render: (record) => (
@@ -96,7 +96,7 @@ const BloodGroups = () => {
     return (
         <>
             <CustomModal
-                title='Create a new  BloodGroup'
+                title='Tạo nhóm máu mới'
                 isModalVisible={isModalVisibleCreate}
                 setIsModalVisible={setIsModalVisibleCreate}
                 form={form}
@@ -110,7 +110,7 @@ const BloodGroups = () => {
             </CustomModal>
 
             <CustomModal
-                title='Update a BloodGroup'
+                title='Nhóm máu'
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
                 width={800}
@@ -138,7 +138,7 @@ const BloodGroups = () => {
                     style={{ backgroundColor: '#1C6BA4' }}
                     onClick={showModalCreate}
                 >
-                    Add BloodGroup
+                    Tạo mới
                 </Button>
             </div>
 

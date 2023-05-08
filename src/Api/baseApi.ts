@@ -56,4 +56,8 @@ export const PATIENT_API = {
     DELETE: '/patient/delete',
 };
 
+export const APPOINTMENT_API = {
+    GET_ALL: "/appointment/get-all",
+    GET_ONE: "/appointment/get-one",
+};
 

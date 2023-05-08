@@ -33,12 +33,12 @@ const Create = ({ handleCreate, form }: Iporps) => {
       <Form.Item name={'name'} label="Name degree" rules={[{ required: true }]}>
         <Input />
       </Form.Item>
-      <Form.Item name={'abbreviation'} label="Abbreviation" >
+      <Form.Item name={'abbreviation'} label="Tạo mới" >
         <Input />
       </Form.Item>
       <Row justify={"end"} align={'bottom'} style={{ marginTop: 30 }} >
         <Button type="primary" htmlType="submit">
-          Save
+          Lưu
         </Button>
       </Row>
 

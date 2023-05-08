@@ -23,19 +23,19 @@ const Workplace = () => {
     const [isModalVisibleUpdate, setIsModalVisibleUpdate] = useState(false);
     const columns: ColumnsType<IWorkplace> = [
         {
-            title: 'Nbr.',
+            title: 'STT',
             dataIndex: 'nbr',
             rowScope: 'row',
         },
         {
-            title: 'Name',
+            title: 'Tên',
             key: 'id',
             render: (record) => (
                 <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}>{record.name}</a>
             ),
         },
         {
-            title: 'Phone',
+            title: 'Số điện thoại',
             dataIndex: 'phone',
         },
         {
@@ -43,15 +43,15 @@ const Workplace = () => {
             dataIndex: 'email',
         },
         {
-            title: 'City',
+            title: 'Thành phố',
             dataIndex: 'city',
         },
         {
-            title: 'Address',
+            title: 'Địa chỉ',
             dataIndex: 'address',
         },
         {
-            title: 'Type',
+            title: 'Loại',
             dataIndex: 'type',
         },
         {
@@ -115,7 +115,7 @@ const Workplace = () => {
     return (
         <>
             <CustomModal
-                title='Create a new  workplace'
+                title='Tạo nơi làm việc'
                 isModalVisible={isModalVisibleCreate}
                 setIsModalVisible={setIsModalVisibleCreate}
                 form={form}
@@ -129,7 +129,7 @@ const Workplace = () => {
             </CustomModal>
 
             <CustomModal
-                title='Update a workplace'
+                title='Nơi làm việc'
                 isModalVisible={isModalVisibleUpdate}
                 setIsModalVisible={setIsModalVisibleUpdate}
                 footer={null}
@@ -157,7 +157,7 @@ const Workplace = () => {
                     style={{ backgroundColor: '#1C6BA4' }}
                     onClick={showModalCreate}
                 >
-                    Add workplace
+                    Tạo mới
                 </Button>
             </div>
             <Table

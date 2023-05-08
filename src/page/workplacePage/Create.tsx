@@ -35,28 +35,28 @@ const Create = ({ handleCreate, form }: Iporps) => {
       validateMessages={validateMessages}
     >
 
-      <Form.Item name={'name'} label="Name" rules={[{ required: true }]}>
+      <Form.Item name={'name'} label="Tên" rules={[{ required: true }]}>
         <Input />
       </Form.Item>
-      <Form.Item name={'phone'} label="Phone"  >
+      <Form.Item name={'phone'} label="Số điện thoại"  >
         <Input />
       </Form.Item>
       <Form.Item name={'email'} label="Email" rules={[{ type: 'email' }]}>
         <Input />
       </Form.Item>
 
-      <Form.Item name={'city'} label="City" >
+      <Form.Item name={'city'} label="Thành phố" >
         <Input />
       </Form.Item>
-      <Form.Item name={'address'} label="Address" >
+      <Form.Item name={'address'} label="Địa chỉ" >
         <Input.TextArea />
       </Form.Item>
-      <Form.Item name={'type'} label="Type">
+      <Form.Item name={'type'} label="Loại">
         <Input />
       </Form.Item>
       <Row justify={"end"} align={'bottom'} style={{ marginTop: 30 }} >
         <Button type="primary" htmlType="submit">
-          Save
+          Lưu
         </Button>
       </Row>
 

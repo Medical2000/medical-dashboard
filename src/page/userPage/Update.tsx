@@ -47,7 +47,7 @@ const Update = ({ handleUpdate, data, role }: Iporps) => {
         >
             <Row gutter={[24, 8]}>
                 <Col span={12}>
-                    <Form.Item name={'user_name'} label="User Name" rules={[{ required: true }]}  >
+                    <Form.Item name={'user_name'} label="Tên tài khoản" rules={[{ required: true }]}  >
                         <Input />
                     </Form.Item>
                 </Col>
@@ -58,26 +58,26 @@ const Update = ({ handleUpdate, data, role }: Iporps) => {
                     </Form.Item>
                 </Col>
                 <Col span={12}>
-                    <Form.Item name={'firstname'} label="First Name">
+                    <Form.Item name={'firstname'} label="Họ tên đệm">
                         <Input />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
-                    <Form.Item name={'lastname'} label="Last Name">
+                    <Form.Item name={'lastname'} label="Tên">
                         <Input />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
-                    <Form.Item name={'phone'} label="Phone">
+                    <Form.Item name={'phone'} label="Số điện thoại">
                         <Input />
                     </Form.Item>
                 </Col>
 
                 <Col span={12}>
-                    <Form.Item name={'gender'} label="Gender">
+                    <Form.Item name={'gender'} label="Giới tính">
                         <Select
                             showSearch
-                            placeholder="Select a gender"
+                            placeholder="Chọn giới tính"
                             optionFilterProp="children"
                             filterOption={(input, option) =>
                                 (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
@@ -85,15 +85,15 @@ const Update = ({ handleUpdate, data, role }: Iporps) => {
                             options={[
                                 {
                                     value: "Female",
-                                    label: "Female"
+                                    label: "Nữ"
                                 },
                                 {
                                     value: "Male",
-                                    label: "Male"
+                                    label: "Nam"
                                 },
                                 {
                                     value: "Other",
-                                    label: "Other"
+                                    label: "Khác"
                                 },
 
                             ]}
@@ -102,10 +102,10 @@ const Update = ({ handleUpdate, data, role }: Iporps) => {
                     </Form.Item>
                 </Col>
                 <Col span={12}>
-                    <Form.Item name={'roleId'} label="Role">
+                    <Form.Item name={'roleId'} label="Tên quyền">
                         <Select
                             showSearch
-                            placeholder="Select a role"
+                            placeholder="Chọn quyền"
                             optionFilterProp="children"
                             filterOption={(input, option) =>
                                 (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
@@ -119,19 +119,19 @@ const Update = ({ handleUpdate, data, role }: Iporps) => {
                 </Col>
 
                 <Col span={12}>
-                    <Form.Item name={'formatDate'} label="Date of birth">
+                    <Form.Item name={'formatDate'} label="Ngày sinh">
                         <DatePicker format='YYYY-MM-DD' size='large' />
                     </Form.Item>
                 </Col>
 
                 <Col span={12}>
-                    <Form.Item name={'address'} label="Address">
+                    <Form.Item name={'address'} label="Địa chỉ">
                         <Input />
                     </Form.Item>
                 </Col>
 
                 <Col span={12}>
-                    <Form.Item name={'status'} label="Status">
+                    <Form.Item name={'status'} label="Trạng thái">
                         <Radio.Group defaultValue={true}  >
                             <Radio value={true}>Active</Radio>
                             <Radio value={false}>Inactive</Radio>
@@ -143,7 +143,7 @@ const Update = ({ handleUpdate, data, role }: Iporps) => {
 
             <Row justify={"end"} align={'bottom'} style={{ marginTop: 30 }} >
                 <Button type="primary" htmlType="submit">
-                    Save
+                    Lưu
                 </Button>
             </Row>
 

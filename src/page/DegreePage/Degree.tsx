@@ -27,23 +27,23 @@ const Degree = () => {
   const [isModalVisibleUpdate, setIsModalVisibleUpdate] = useState(false);
   const columns: ColumnsType<IDegree> = [
     {
-      title: 'Nbr.',
+      title: 'STT',
       dataIndex: 'nbr',
       rowScope: 'row',  
     },
     {
-      title: 'Name',
+      title: 'Tên',
       key: 'id',
       render: (record) => (
         <a style={{ fontWeight: 600 }} onClick={() => showModalUpdate(record.id)}>{record.name}</a>
       ),
     },
     {
-      title: 'Abbreviation',
+      title: 'Viết tắt',
       dataIndex: 'abbreviation',
     },
     {
-      title: 'Action',
+      title: 'Hành động',
       key: 'action',
       align: 'center',
       render: (record) => (
@@ -104,7 +104,7 @@ const Degree = () => {
   return (
     <>
       <CustomModal
-        title='Create a new  Degree'
+        title='Tạo bằng cấp mới'
         isModalVisible={isModalVisibleCreate}
         setIsModalVisible={setIsModalVisibleCreate}
         form={form}
@@ -118,7 +118,7 @@ const Degree = () => {
       </CustomModal>
 
       <CustomModal
-        title='Update a Degree'
+        title='Bằng Cấp'
         isModalVisible={isModalVisibleUpdate}
         setIsModalVisible={setIsModalVisibleUpdate}
         width={800}
@@ -146,7 +146,7 @@ const Degree = () => {
           style={{ backgroundColor: '#1C6BA4' }}
           onClick={showModalCreate}
         >
-          Add Degree
+         Tạo mới
         </Button>
       </div>
 
