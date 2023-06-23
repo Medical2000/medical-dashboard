@@ -61,3 +61,7 @@ export const APPOINTMENT_API = {
     GET_ONE: "/appointment/get-one",
 };
 
+export const COUNT_API = {
+    GET_USER: "/user/get-count",
+};
+

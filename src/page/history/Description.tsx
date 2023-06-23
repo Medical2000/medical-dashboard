@@ -5,7 +5,6 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/vi';
 
 export const Description = ({ setIsModalVisible, data }: { setIsModalVisible: (value: boolean) => void, data: IAppointment }) => {
-  console.log(data)
   const capitalize = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
@@ -14,7 +13,7 @@ export const Description = ({ setIsModalVisible, data }: { setIsModalVisible: (v
     .format('dddd, DD-MM-YYYY')
     .replace(/^\w+/, str => capitalize(str));
   return (
-    <Descriptions title={`AP${data && data.id.slice(0, 8)}`} layout='horizontal' size='middle'>
+    <Descriptions title={`AP${data.id.slice(0, 8)}`} layout='horizontal' size='middle'>
       <Descriptions.Item label="Bác sĩ">{data?.doctorUser?.firstname} {data?.doctorUser?.lastname}</Descriptions.Item>
       <Descriptions.Item label="Số giấy phép">{data.doctorUser.doctor.license_number}</Descriptions.Item>
       <Descriptions.Item label="Chuyên ngành">{data.doctorUser.doctor.specialty}</Descriptions.Item>

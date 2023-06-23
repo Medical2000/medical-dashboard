@@ -8,10 +8,21 @@ import dayjs from 'dayjs';
 import { Tag } from 'antd';
 import { CustomModal } from '../../components/modal/CustomModal';
 import { Description } from './Description';
+import { Rate } from 'antd';
 
-const Appointment = () => {
+const History = () => {
     const dispatch = useAppDispatch();
-    const appointmentSelect = useAppSelector((state) => state.appointment)
+    const appointmentSelect = useAppSelector((state) => state.appointment);
+    const data = appointmentSelect && appointmentSelect.appointments.filter((e) => e.status == "COMPLETED");
+    const capitalize = (str: string) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+    //   const formmatSater = item.videoCall && dayjs(item.videoCall.start_time)
+    //     .locale('vi')
+    //     .format('dddd, DD-MM-YYYY')
+    //     .replace(/^\w+/, str => capitalize(str));
+    console.log(data);
+
     const [isModalVisible, setIsModalVisible] = useState(false);
     useEffect(() => {
         dispatch(getAllAppointments());
@@ -32,30 +43,36 @@ const Appointment = () => {
         {
             title: 'ID',
             key: 'id',
-            render: (record) => (
-                <a style={{ fontWeight: 600 }} onClick={() => showModal(record.id)}>AP{record.id.slice(0, 8)}</a>
-            ),
+            render: (text, record) => record?.videoCall.roomSid.slice(0, 8)
+        },
+
+        {
+            title: 'Bác sĩ',
+            render: (text, record) => `${record?.doctorUser?.firstname} ${record?.doctorUser?.lastname}`
         },
         {
             title: 'Bệnh nhân',
             render: (text, record) => `${record?.user?.firstname} ${record?.user?.lastname}`
         },
         {
-            title: 'Bác sĩ',
-            render: (text, record) => `${record?.doctorUser?.firstname} ${record?.doctorUser?.lastname}`
+            title: 'Thời gian bắt đầu',
+            render: (text, record) => data && dayjs(record.videoCall.start_time).format("h:mm DD-MM-YYYY")
         },
         {
-            title: 'Gi chú',
-            dataIndex: 'notes'
+            title: 'Thời gian kết thúc',
+            render: (text, record) => data && dayjs(record.videoCall.end_time).format("h:mm DD-MM-YYYY")
         },
         {
-            title: 'Giờ',
-            dataIndex: 'time'
+            title: 'Thời gian',
+            render: (text, record) => data && `${record.videoCall.duration} giây`
         },
         {
-            title: 'Ngày',
-            render: (text, record) => dayjs(record?.date).format("DD-MM-YYYY")
+            title: 'Đánh giá',
+            render: (record) => (
+                <Rate value={record.videoCall.rating} />
+            ),
         },
+        
         {
             title: 'Trạng thái',
             render: (record) => (
@@ -87,9 +104,9 @@ const Appointment = () => {
             <Table
                 loading={appointmentSelect.loading}
                 bordered columns={columns}
-                dataSource={appointmentSelect.appointments.map((item, index) => ({ ...item, nbr: index + 1, key: index }))} />
+                dataSource={data.map((item, index) => ({ ...item, nbr: index + 1, key: index }))} />
         </>
     )
 }
 
-export default Appointment;
+export default History;

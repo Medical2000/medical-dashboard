@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 
 import { Line } from '@ant-design/charts';
+import { getCountUser } from "../../Api/countApi";
 
 const Home = () => {
+    const [dataCount, setDataCount] = useState<any>();
     const data = [
-        { year: '1991', value: 3 },
-        { year: '1992', value: 4 },
-        { year: '1993', value: 3.5 },
-        { year: '1994', value: 5 },
-        { year: '1995', value: 4.9 },
-        { year: '1996', value: 6 },
-        { year: '1997', value: 7 },
-        { year: '1998', value: 9 },
-        { year: '1999', value: 13 },
+        { year: '2019', value: 3 },
+        { year: '2020', value: 4 },
+        { year: '2021', value: 3.5 },
+        { year: '2022', value: 5 },
+        { year: '2023', value: 4.9 },
+        { year: '2024', value: 6 },
+        { year: '2025', value: 7 },
+        { year: '2026', value: 9 },
+        { year: '2027', value: 13 },
     ];
     const config = {
         data,
-        height: 400,
+        height: 220,
         xField: 'year',
         yField: 'value',
         point: {
@@ -25,6 +27,13 @@ const Home = () => {
             shape: 'diamond',
         },
     };
+
+    useEffect(() => {
+        getCountUser().then(res => {
+            setDataCount(res.data);
+        });
+    }, [])
+
     return (
         <div>
             <div className="dashboard-container">
@@ -32,15 +41,15 @@ const Home = () => {
                 <div className="card-container">
                     <div className="card">
                         <h2>Tài khoản</h2>
-                        <p>Total users: 10</p>
+                        <p>Tổnng số tài khoản: {dataCount?.user}</p>
                     </div>
                     <div className="card">
                         <h2>Cuộc hẹn</h2>
-                        <p>Total appointments: 30</p>
+                        <p>Tổnng số cuộc hẹn: {dataCount?.appointment}</p>
                     </div>
                     <div className="card">
                         <h2>Cuộc gọi</h2>
-                        <p>Total calls:40</p>
+                        <p>Tổnng số cuộc gọi: {dataCount?.videoCall}</p>
                     </div>
                 </div>
 

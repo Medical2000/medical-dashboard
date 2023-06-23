@@ -14,9 +14,19 @@ export interface IDoctorUser {
     address: string,
     doctor: {
         specialty: string,
-        license_number:string,
+        license_number: string,
     }
 };
+
+export interface IVideoCall {
+    id: string;
+    roomSid: string;
+    start_time: Date;
+    end_time: Date;
+    duration: string;
+    call_status: string;
+    rating: string;
+}
 
 export interface IAppointment {
     id: string,
@@ -26,4 +36,6 @@ export interface IAppointment {
     status: string,
     user: IUser,
     doctorUser: IDoctorUser,
+    videoCall: IVideoCall
 };
+

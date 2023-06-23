@@ -12,43 +12,8 @@ interface AppointmentState {
 
 const initialState: AppointmentState = {
     appointments: [],
-    appointment: {
-        id: "",
-        date: "",
-        time: "",
-        notes: "",
-        status: "",
-        user: {
-            id: "",
-            firstname: "",
-            lastname: "",
-            user_name: "",
-            password: "",
-            avatar_path: "",
-            email: "",
-            gender: "",
-            phone: "",
-            date_of_birth: "",
-            address: "",
-        },
-        doctorUser: {
-            id: "",
-            firstname: "",
-            lastname: "",
-            user_name: "",
-            password: "",
-            avatar_path: "",
-            email: "",
-            gender: "",
-            phone: "",
-            date_of_birth: "",
-            address: "",
-            doctor: {
-                specialty: "",
-                license_number:'',
-            }
-        }
-    },
+    appointment: {} as IAppointment,
+
     loading: false,
     message: '',
     success: undefined,

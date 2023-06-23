@@ -5,6 +5,7 @@ import {
   CaretDownOutlined,
   CreditCardOutlined,
   DashboardOutlined,
+  HistoryOutlined,
   LogoutOutlined,
   MedicineBoxOutlined,
   MenuFoldOutlined,
@@ -57,13 +58,15 @@ const MainApp: React.FC = () => {
     getItem(
       <Link className='label' to="home/appointment" >Lịch đặt khám bệnh</Link>, '2', <CreditCardOutlined style={{ fontSize: 17 }} />),
     getItem(
+      <Link className='label' to="home/history" >Lịch sử cuộc gọi</Link>, '3', <HistoryOutlined style={{ fontSize: 17 }} />),
+    getItem(
       <div className='label'>Quản lí bác sĩ</div>, 'sub1', <MedicineBoxOutlined style={{ fontSize: 17 }} />, [
       getItem(
-        <Link to="/home/doctor">Bác sĩ</Link>, '3'),
+        <Link to="/home/doctor">Bác sĩ</Link>, '4'),
       getItem(
-        <Link to="/home/workplace">Nơi làm việc</Link>, '4'),
+        <Link to="/home/workplace">Nơi làm việc</Link>, '5'),
       getItem(
-        <Link to="/home/degree">Bằng cấp</Link>, '5'),
+        <Link to="/home/degree">Bằng cấp</Link>, '6'),
     ]),
     getItem(
       <div className='label'>Quản lí bệnh nhân</div>, 'sub2', <AuditOutlined style={{ fontSize: 17 }} />, [
